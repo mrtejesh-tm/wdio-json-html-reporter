@@ -4,16 +4,15 @@ This is a custom WebDriverIO reporter that generates detailed JSON reports durin
 
 ## Table of Contents
 
-- [WDIO JSON HTML REPORTER](#wdio-json-html-reporter)
-   - [Table of Contents](#table-of-contents)
-   - [Overview](#overview)
-   - [Features](#features)
-   - [Installation](#installation)
-      - [1. Install the package](#1-install-the-package)
-      - [2. Verify installation](#2-verify-installation)
-      - [3. Update WebDriverIO Configuration](#3-update-webdriverio-configuration)
-      - [4. Run Your Tests](#4-run-your-tests)
-   - [CLI Usage](#cli-usage)
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+  - [1. Install the package](#1-install-the-package)
+  - [2. Verify installation](#2-verify-installation)
+  - [3. Update WebDriverIO Configuration](#3-update-webdriverio-configuration)
+  - [4. Run Your Tests](#4-run-your-tests)
+- [CLI Usage](#cli-usage)
+- [Screenshots](#screenshots)
 
 ## Overview
 
@@ -90,7 +89,7 @@ npx wdio run wdio.conf.js
 
 ## CLI Usage
 
-In addition to integrating with WebDriverIO, you can also run the HTML report generator directly from the command line using the built‑in CLI.
+In addition to integrating with WebDriverIO, you can also run the HTML report generator directly from the command line using the built-in CLI.
 
 **Example:**
 
@@ -103,11 +102,17 @@ This command tells the CLI tool to:
 - Generate a comprehensive HTML report and save it as `test/reports/report.html`.
 
 **Note:**  
-The CLI functionality is triggered only when you pass the `generate-html` command as the first parameter. When using WebDriverIO (e.g. via `wdio run wdio.conf.js`), the CLI logic is bypassed.
+The CLI functionality is triggered only when you pass the `generate-html` command as the first parameter. When using WebDriverIO (e.g., via `wdio run wdio.conf.js`), the CLI logic is bypassed.
+
+## Screenshots
+
+### Dashboard  
+![Dashboard](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/dashboard.png)
+
+### Test Results  
+![Test Results](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/testresults.png)
+
+### Screenshots  
+![Screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/screesnshots.png)
 
 ---
-## Screenhots
-[dashboard](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/dashboard.png)
-[screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/screesnshots.png)
-[testresults](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/testresults.png)
-
