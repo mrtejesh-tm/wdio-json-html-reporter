@@ -13,6 +13,7 @@ This is a custom WebDriverIO reporter that generates detailed JSON reports durin
       - [2. Verify installation](#2-verify-installation)
       - [3. Update WebDriverIO Configuration](#3-update-webdriverio-configuration)
       - [4. Run Your Tests](#4-run-your-tests)
+   - [CLI Usage](#cli-usage)
 
 ## Overview
 
@@ -86,3 +87,23 @@ Execute your WebDriverIO test suite:
 ```bash
 npx wdio run wdio.conf.js
 ```
+
+## CLI Usage
+
+In addition to integrating with WebDriverIO, you can also run the HTML report generator directly from the command line using the built‑in CLI.
+
+**Example:**
+
+```bash
+npx wdio-json-html-reporter generate-html test/reports/json-reports test/reports/report.html
+```
+
+This command tells the CLI tool to:
+- Look for JSON report files in the `test/reports/json-reports` folder.
+- Generate a comprehensive HTML report and save it as `test/reports/report.html`.
+
+**Note:**  
+The CLI functionality is triggered only when you pass the `generate-html` command as the first parameter. When using WebDriverIO (e.g. via `wdio run wdio.conf.js`), the CLI logic is bypassed.
+
+---
+
