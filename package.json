@@ -1,0 +1,22 @@
+{
+    "name": "wdio-json-html-reporter",
+    "version": "1.0.8",
+    "description": "A custom WebDriverIO reporter that generates JSON and HTML reports with timestamps, screenshots, and execution metadata.",
+    "main": "index.js",
+    "type": "module",
+    "keywords": [
+      "wdio",
+      "wdio-reporter",
+      "webdriverio",
+      "reporter",
+      "json",
+      "html"
+    ],
+    "author": "Aswin Chembath",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2025 AswinChembath",
+    "dependencies": {
+      "@wdio/reporter": "^8.32.4"
+    }
+  }
+  
