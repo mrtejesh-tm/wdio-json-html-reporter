@@ -106,4 +106,8 @@ This command tells the CLI tool to:
 The CLI functionality is triggered only when you pass the `generate-html` command as the first parameter. When using WebDriverIO (e.g. via `wdio run wdio.conf.js`), the CLI logic is bypassed.
 
 ---
+## Screenhots
+[dashboard](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/dashboard.png)
+[screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/screesnshots.png)
+[testresults](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/testresults.png)
 
