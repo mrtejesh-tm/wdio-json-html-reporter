@@ -27,7 +27,7 @@ These tools help you gain clear insights into your test runs, which is essential
 
 - **JSON Reporting**: Detailed report with timestamps, suite names, test results, errors, and optional screenshots.
 - **HTML Reporting**: Converts JSON reports into a  portable HTML report with dashboard,charts,detailed test report and filtering capabilities.
-- **Export test to Excel**: Detailed report can be exported to execl file.
+- **Export test to Excel**: Detailed report can be exported to excel file.
 - **Screenshot Support**: Capture screenshots for failed tests or every test based on configuration.
 - **Execution Metadata**: Logs browser information, execution start/end times, and overall duration.
 - **Easy Integration**: Designed to work seamlessly with your existing WebDriverIO configuration.
