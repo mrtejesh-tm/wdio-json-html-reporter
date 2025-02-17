@@ -1,6 +1,6 @@
 # WDIO JSON HTML REPORTER
 
-This is a custom WebDriverIO reporter that generates detailed JSON reports during test execution and provides an HTML report generator to visualize your test results. It logs timestamps, execution metadata, and can capture screenshots on demand. The package follows the WebDriverIO convention for reporters and is published as an npm package under the name `wdio-json-html-reporter`.
+This is a custom WebDriverIO reporter that generates detailed JSON reports during test execution and provides a portable HTML report generator to visualize your test results. It logs timestamps, execution metadata, and can capture screenshots on demand. The package follows the WebDriverIO convention for reporters and is published as an npm package under the name `wdio-json-html-reporter`.
 
 ## Table of Contents
 
@@ -26,7 +26,8 @@ These tools help you gain clear insights into your test runs, which is essential
 ## Features
 
 - **JSON Reporting**: Detailed report with timestamps, suite names, test results, errors, and optional screenshots.
-- **HTML Reporting**: Converts JSON reports into an HTML dashboard complete with charts and filtering capabilities.
+- **HTML Reporting**: Converts JSON reports into a  portable HTML report with dashboard,charts,detailed test report and filtering capabilities.
+- **Export test to Excel**: Detailed report can be exported to execl file.
 - **Screenshot Support**: Capture screenshots for failed tests or every test based on configuration.
 - **Execution Metadata**: Logs browser information, execution start/end times, and overall duration.
 - **Easy Integration**: Designed to work seamlessly with your existing WebDriverIO configuration.
