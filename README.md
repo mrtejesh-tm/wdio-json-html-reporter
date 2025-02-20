@@ -116,4 +116,9 @@ The CLI functionality is triggered only when you pass the `generate-html` comman
 ### Screenshots  
 ![Screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/screesnshots.png)
 
+### Filters  
+![Screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/filters.png)
+
+### Excel Export  
+![Screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/exportedfile.png)
 ---
