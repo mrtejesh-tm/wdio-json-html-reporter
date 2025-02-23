@@ -1,6 +1,6 @@
 {
     "name": "wdio-json-html-reporter",
-    "version": "1.3.3",
+    "version": "1.3.4",
     "description": "A custom WebDriverIO reporter that generates JSON and HTML reports with timestamps, screenshots, and execution metadata.",
     "main": "index.js",
     "bin": {
