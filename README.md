@@ -111,7 +111,7 @@ The CLI functionality is triggered only when you pass the `generate-html` comman
 ![Dashboard](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/dashboard.png)
 
 ### Test Results  
-![Test Results](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/testresults.png)
+![Test Results](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/testdetails.png)
 
 ### Screenshots  
 ![Screenshots](https://github.com/aswinchembath/wdio-json-html-reporter/blob/main/lib/assets/screesnshots.png)
