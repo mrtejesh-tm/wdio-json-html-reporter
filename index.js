@@ -10,7 +10,7 @@ export { JSONReporter, HTMLReportGenerator };
  * Prints the usage message and exits.
  */
 function printUsageAndExit() {
-  console.error('Usage: generate-html <inputFolder> <outputFile>');
+  console.error('Usage: generate-html <inputFolder> <outputFile> [historyFile]');
   process.exit(1);
 }
 
@@ -28,7 +28,7 @@ if (process.argv[2] === 'generate-html') {
       printUsageAndExit();
     }
     
-    // Extract parameters: command, inputFolder, and outputFile.
+    // Extract parameters: command, inputFolder, outputFile, and optionally historyFile.
     // args[0] is "generate-html"
     const inputFolder = args[1];
     const outputFile = args[2];
@@ -41,8 +41,14 @@ if (process.argv[2] === 'generate-html') {
     console.log(`Input Folder: ${inputFolder}`);
     console.log(`Output File: ${outputFile}`);
     
-    // Instantiate the HTMLReportGenerator and run the conversion.
-    const generator = new HTMLReportGenerator(outputFile);
+    // Optional history file parameter for generating historical execution data.
+    const historyFile = args[3] || null;
+    if (historyFile) {
+      console.log(`History File: ${historyFile}`);
+    }
+    
+    // Instantiate the HTMLReportGenerator with the optional historyFile parameter.
+    const generator = new HTMLReportGenerator(outputFile, historyFile);
     generator.convertJSONFolderToHTML(inputFolder)
       .then(() => {
         console.log('HTML report generated successfully.');
