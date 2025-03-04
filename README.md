@@ -12,7 +12,7 @@ This is a custom WebDriverIO reporter that generates detailed JSON reports durin
   - [3. Update WebDriverIO Configuration](#3-update-webdriverio-configuration)
   - [4. Run Your Tests](#4-run-your-tests)
 - [CLI Usage](#cli-usage)
-- [History Option](#history-option)
+- [History Option and Aggregated History Generation](#history-option-and-aggregated-history-generation)
 - [Screenshots](#screenshots)
 
 ## Overview
@@ -31,9 +31,8 @@ These tools help you gain clear insights into your test runs, which is essential
 - **Export to Excel**: The detailed test report can be exported to an Excel file.
 - **Screenshot Support**: Capture screenshots for failed tests (or all tests) based on your configuration.
 - **Execution Metadata**: Logs browser information, execution start/end times, and overall duration.
-- **Historical Execution (Optional)**: Provide a history JSON file to include historical execution data by suite. If no historical data is provided, the report will automatically hide this section.
-- **Easy Integration**: Designed to work seamlessly with your existing WebDriverIO configuration.
-- **Customizable**: Extend and modify reporter behavior to suit your specific project requirements.
+- **Historical Execution (Optional)**: Provide a history JSON file to include historical execution data by suite. If no historical data is provided, the report will automatically hide this section and display only the Unique Errors.
+- **Aggregated History Generation**: The JSON reporter now includes an aggregated history generation feature. Using the static method `JSONReporter.generateAggregateHistory({ reportPaths, historyPath, maxHistory })`, you can automatically scan all JSON report files (matching the pattern `test-report-*.json`) in your report directory, aggregate test results, and compute defect comparisons based on historical data. The aggregated history record is then appended to your history file and can be used by the HTML report generator to visualize trends over time.
 
 ## Installation
 
@@ -79,6 +78,9 @@ export const config = {
     // If you want to include historical data, specify the history JSON file path here.
     const historyFile = './reports/history.json'; // Optional
 
+    // Optionally, generate aggregated history data before generating the HTML report.
+    // JSONReporter.generateAggregateHistory({ reportPaths: jsonFolder, historyPath: historyFile });
+
     const reportGenerator = new HTMLReportGenerator(outputFilePath, historyFile);
     await reportGenerator.convertJSONFolderToHTML(jsonFolder);
   }
@@ -118,9 +120,11 @@ npx wdio-json-html-reporter generate-html test/reports/json-reports test/reports
 **Note:**  
 The CLI functionality is triggered only when you pass the `generate-html` command as the first parameter. When running via WebDriverIO (e.g., with `wdio run wdio.conf.js`), the CLI logic is bypassed.
 
-## History Option
+## History Option and Aggregated History Generation
 
 The HTML report generator now supports a **history option**. This allows you to provide a JSON file containing historical execution data that is merged into the report under the "Historical Execution by Suite" section. If the history file is provided and contains valid data, the report will display historical trends along with interactive charts and an accordion for each suite. If no history file is passed or if the file does not contain any suite data, the report will automatically hide the historical section and display only the Unique Errors overview.
+
+In addition, the JSON reporter now includes an **aggregated history generation** feature. With the static method `JSONReporter.generateAggregateHistory({ reportPaths, historyPath, maxHistory })`, you can automatically scan all JSON report files (matching the pattern `test-report-*.json`) in your report directory, aggregate test results (summing test counts and merging suite data), and compute defect comparisons by comparing with the last aggregated record. The newly generated history record is then appended to the specified history file. This aggregated history data can subsequently be used by the HTML report generator to provide historical execution insights over multiple test runs.
 
 ## Screenshots
 
