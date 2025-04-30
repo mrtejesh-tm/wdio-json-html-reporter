@@ -1,6 +1,6 @@
 {
   "name": "wdio-json-html-reporter",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "A custom WebDriverIO reporter that generates JSON and HTML reports with timestamps, screenshots, and execution metadata.",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -29,8 +29,8 @@
     "dist"
   ],
   "scripts": {
-    "build:cjs": "mkdir -p dist/cjs && babel index.js --out-file dist/cjs/index.js --env-name cjs",
-    "build:esm": "mkdir -p dist/esm && cp index.js dist/esm/index.js",
+    "build:cjs": "mkdir -p dist/cjs && babel index/index.js --out-file dist/cjs/index.js --env-name cjs",
+    "build:esm": "mkdir -p dist/esm && cp  index/index.js dist/esm/index.js",
     "build": "npm run build:cjs && npm run build:esm"
   },
   "dependencies": {

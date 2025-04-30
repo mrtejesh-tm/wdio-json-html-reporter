@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import path from 'path';
 import { fileURLToPath } from 'url';
-import JSONReporter from './lib/JSONReporter.js';
-import HTMLReportGenerator from './lib/HTMLReportGenerator.js';
+import JSONReporter from '../lib/JSONReporter.js';
+import HTMLReportGenerator from '../lib/HTMLReportGenerator.js';
 
 export { JSONReporter, HTMLReportGenerator };
 
