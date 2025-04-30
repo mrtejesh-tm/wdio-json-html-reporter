@@ -1,25 +1,44 @@
 {
-    "name": "wdio-json-html-reporter",
-    "version": "1.5.4",
-    "description": "A custom WebDriverIO reporter that generates JSON and HTML reports with timestamps, screenshots, and execution metadata.",
-    "main": "index.js",
-    "bin": {
-      "wdio-json-html-reporter": "./index.js"
-    },
-    "type": "module",
-    "keywords": [
-      "wdio",
-      "wdio-reporter",
-      "webdriverio",
-      "reporter",
-      "json",
-      "html"
-    ],
-    "author": "Aswin Chembath",
-    "license": "MIT",
-    "copyright": "Copyright (c) 2025 AswinChembath",
-    "dependencies": {
-      "@wdio/reporter": "^8.32.4"
+  "name": "wdio-json-html-reporter",
+  "version": "1.5.5",
+  "description": "A custom WebDriverIO reporter that generates JSON and HTML reports with timestamps, screenshots, and execution metadata.",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
+  },
+  "bin": {
+    "wdio-json-html-reporter": "./dist/cjs/index.js"
+  },
+  "keywords": [
+    "wdio",
+    "wdio-reporter",
+    "webdriverio",
+    "reporter",
+    "json",
+    "html"
+  ],
+  "author": "Aswin Chembath",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2025 AswinChembath",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build:cjs": "mkdir -p dist/cjs && babel index.js --out-file dist/cjs/index.js --env-name cjs",
+    "build:esm": "mkdir -p dist/esm && cp index.js dist/esm/index.js",
+    "build": "npm run build:cjs && npm run build:esm"
+  },
+  "dependencies": {
+    "@wdio/reporter": "^8.32.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9"
   }
-  
+}
