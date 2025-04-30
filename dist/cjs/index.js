@@ -18,8 +18,8 @@ Object.defineProperty(exports, "JSONReporter", {
 });
 var _path = _interopRequireDefault(require("path"));
 var _url = require("url");
-var _JSONReporter = _interopRequireDefault(require("../lib/JSONReporter.js"));
-var _HTMLReportGenerator = _interopRequireDefault(require("../lib/HTMLReportGenerator.js"));
+var _JSONReporter = _interopRequireDefault(require("./lib/JSONReporter.js"));
+var _HTMLReportGenerator = _interopRequireDefault(require("./lib/HTMLReportGenerator.js"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 /**
  * Prints the usage message and exits.
