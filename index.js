@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-const path = require('path');
-const JSONReporter = require('./lib/JSONReporter');
-const HTMLReportGenerator = require('./lib/HTMLReportGenerator');
-module.exports = { JSONReporter, HTMLReportGenerator };
+import path from 'path';
+import { fileURLToPath } from 'url';
+import JSONReporter from './lib/JSONReporter.js';
+import HTMLReportGenerator from './lib/HTMLReportGenerator.js';
+
+export { JSONReporter, HTMLReportGenerator };
 
 /**
  * Prints the usage message and exits.
