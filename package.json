@@ -1,8 +1,7 @@
 {
   "name": "wdio-json-html-reporter",
-  "version": "1.5.13",
+  "version": "1.5.14",
   "description": "A custom WebDriverIO reporter that generates JSON and HTML reports with timestamps, screenshots, and execution metadata.",
-  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "exports": {
@@ -28,10 +27,11 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "prepare": "npm run build",
-    "build:cjs": "rm -rf dist/cjs && mkdir -p dist/cjs && babel index.js --out-file dist/cjs/index.js --env-name cjs && babel lib --out-dir dist/cjs/lib --extensions \".js\" --env-name cjs",
-    "build:esm": "rm -rf dist/esm && mkdir -p dist/esm && cp index.js dist/esm/index.js && cp -R lib dist/esm/lib",
+    "build:cjs": "rm -rf dist/cjs && mkdir -p dist/cjs && cp index.js dist/cjs/index.js && cp -R lib dist/cjs/lib",
+    "build:esm": "rm -rf dist/esm && mkdir -p dist/esm && babel index.js --out-file dist/esm/index.js --env-name esm && babel lib --out-dir dist/esm/lib --extensions \".js\" --env-name esm && node scripts/fix-esm-exports.js",
     "build": "npm run build:cjs && npm run build:esm"
   },
   "dependencies": {

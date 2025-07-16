@@ -2,6 +2,24 @@
 
 This is a custom WebDriverIO reporter that generates detailed JSON reports during test execution and provides a portable HTML report generator to visualize your test results. It logs timestamps, execution metadata, and can capture screenshots on demand. The package follows the WebDriverIO convention for reporters and is published as an npm package under the name `wdio-json-html-reporter`.
 
+---
+
+## ⚡️ Dual Compatibility: CommonJS and ESM
+
+This package works in both CommonJS (`require`) and ES Module (`import`) projects.
+
+**For CommonJS (require):**
+```js
+const { JSONReporter, HTMLReportGenerator } = require('wdio-json-html-reporter');
+```
+
+**For ESM (import):**
+```js
+import { JSONReporter, HTMLReportGenerator } from 'wdio-json-html-reporter';
+```
+
+---
+
 ## Table of Contents
 
 - [Overview](#overview)

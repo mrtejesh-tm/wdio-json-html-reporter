@@ -1,7 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-
-export default class HTMLReportGenerator {
+import fs from 'fs';;
+import path from 'path';;
+class HTMLReportGenerator {
   constructor(outputFilePath, historyPath = null) {
     this.outputFilePath = outputFilePath;
     this.historyPath = historyPath; // Optional history JSON file path.
@@ -13,14 +12,8 @@ export default class HTMLReportGenerator {
   // Helper to escape HTML so that any HTML tags in data are rendered as text
   escapeHtml(str) {
     if (!str) return '';
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   }
-
   async convertJSONFolderToHTML(folderPath) {
     let historyData = [];
     try {
@@ -65,9 +58,7 @@ export default class HTMLReportGenerator {
         browserName: this.metadataList[0] ? this.metadataList[0].browserName : 'N/A',
         executionStartTime: overallStart ? overallStart.toISOString() : 'N/A',
         executionEndTime: overallEnd ? overallEnd.toISOString() : 'N/A',
-        totalTimeInMinutes: (overallStart && overallEnd)
-          ? (((overallEnd - overallStart) / (1000 * 60)).toFixed(2))
-          : 'N/A'
+        totalTimeInMinutes: overallStart && overallEnd ? ((overallEnd - overallStart) / (1000 * 60)).toFixed(2) : 'N/A'
       };
 
       // If historyPath is provided and exists, read the history JSON data.
@@ -87,30 +78,29 @@ export default class HTMLReportGenerator {
       console.error('Error converting JSON to HTML:', error);
     }
   }
-
   generateHTMLReport(historyData) {
     const summary = this.calculateSummaryStats();
     const metadata = this.metadata || {
       browserName: 'N/A',
       executionStartTime: 'N/A',
       executionEndTime: 'N/A',
-      totalTimeInMinutes: 'N/A',
+      totalTimeInMinutes: 'N/A'
     };
 
     // Format the start and end date into the desired format: "Tue, 08 Apr 2025 21:16:16 GMT"
-    const startDateStr = (metadata.executionStartTime !== 'N/A') 
-      ? new Date(metadata.executionStartTime).toUTCString() 
-      : 'N/A';
-    const endDateStr = (metadata.executionEndTime !== 'N/A') 
-      ? new Date(metadata.executionEndTime).toUTCString() 
-      : 'N/A';
+    const startDateStr = metadata.executionStartTime !== 'N/A' ? new Date(metadata.executionStartTime).toUTCString() : 'N/A';
+    const endDateStr = metadata.executionEndTime !== 'N/A' ? new Date(metadata.executionEndTime).toUTCString() : 'N/A';
 
     // Compute suite statistics for current run
     const suiteStats = {};
     this.testResults.forEach(test => {
       const suite = test.suiteName || "Unknown";
       if (!suiteStats[suite]) {
-        suiteStats[suite] = { total: 0, passed: 0, failed: 0 };
+        suiteStats[suite] = {
+          total: 0,
+          passed: 0,
+          failed: 0
+        };
       }
       suiteStats[suite].total++;
       if (test.status === 'PASSED') {
@@ -163,8 +153,8 @@ export default class HTMLReportGenerator {
         if (record.suites) {
           Object.keys(record.suites).forEach(suite => {
             const data = record.suites[suite];
-            let passRate = data.totalTests ? ((data.passed / data.totalTests) * 100).toFixed(2) : '0';
-            let failRate = data.totalTests ? ((data.failed / data.totalTests) * 100).toFixed(2) : '0';
+            let passRate = data.totalTests ? (data.passed / data.totalTests * 100).toFixed(2) : '0';
+            let failRate = data.totalTests ? (data.failed / data.totalTests * 100).toFixed(2) : '0';
             if (!historicalBySuite[suite]) {
               historicalBySuite[suite] = [];
             }
@@ -187,7 +177,7 @@ export default class HTMLReportGenerator {
     let historicalAccordionHTML = '';
     if (Object.keys(historicalBySuite).length > 0) {
       historicalAccordionHTML += '<div class="historical-accordion">';
-      Object.keys(historicalBySuite).forEach((suite) => {
+      Object.keys(historicalBySuite).forEach(suite => {
         // For each suite, check the latest record for new/resolved issues
         let latestRecord = historicalBySuite[suite][historicalBySuite[suite].length - 1];
         let redDot = latestRecord.newIssues && latestRecord.newIssues.length > 0 ? '<span class="dot red-dot" title="New Issues"></span>' : '';
@@ -276,15 +266,12 @@ export default class HTMLReportGenerator {
     }
 
     // Include a chart container for history trends if historical data is provided.
-    const historyChartHTML = (historyData && historyData.length > 0)
-      ? `<div class="charts-row" id="historyChartRow">
+    const historyChartHTML = historyData && historyData.length > 0 ? `<div class="charts-row" id="historyChartRow">
            <div class="chart-container">
              <canvas id="historyChart"></canvas>
              <button class="expand-btn" onclick="openChartModal('history')">Expand History Chart</button>
            </div>
-         </div>`
-      : '';
-
+         </div>` : '';
     const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
@@ -1678,14 +1665,16 @@ export default class HTMLReportGenerator {
     fs.writeFileSync(this.outputFilePath, htmlContent, 'utf8');
     console.log(`HTML report successfully written to ${this.outputFilePath}`);
   }
-
   calculateSummaryStats() {
     const total = this.testResults.length;
     const passed = this.testResults.filter(test => test.status === 'PASSED').length;
     const failed = this.testResults.filter(test => test.status === 'FAILED').length;
-    return { total, passed, failed };
+    return {
+      total,
+      passed,
+      failed
+    };
   }
-
   embedScreenshot(screenshotPath) {
     try {
       if (fs.existsSync(screenshotPath)) {
@@ -1706,3 +1695,4 @@ export default class HTMLReportGenerator {
     }
   }
 }
+export default HTMLReportGenerator;

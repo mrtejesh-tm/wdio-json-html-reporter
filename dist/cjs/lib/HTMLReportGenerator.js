@@ -1,32 +1,8 @@
-"use strict";
+const fs = require('fs');
+const path = require('path');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _fs = _interopRequireDefault(require("fs"));
-var _path = _interopRequireDefault(require("path"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var HTMLReportGenerator = exports["default"] = /*#__PURE__*/function () {
-  function HTMLReportGenerator(outputFilePath) {
-    var historyPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    _classCallCheck(this, HTMLReportGenerator);
+class HTMLReportGenerator {
+  constructor(outputFilePath, historyPath = null) {
     this.outputFilePath = outputFilePath;
     this.historyPath = historyPath; // Optional history JSON file path.
     this.testResults = [];
@@ -35,304 +11,1700 @@ var HTMLReportGenerator = exports["default"] = /*#__PURE__*/function () {
   }
 
   // Helper to escape HTML so that any HTML tags in data are rendered as text
-  return _createClass(HTMLReportGenerator, [{
-    key: "escapeHtml",
-    value: function escapeHtml(str) {
-      if (!str) return '';
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-    }
-  }, {
-    key: "convertJSONFolderToHTML",
-    value: function () {
-      var _convertJSONFolderToHTML = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(folderPath) {
-        var historyData, files, _iterator, _step, file, filePath, jsonContent, parsedContent, _this$testResults, _this$testResults2, overallStart, overallEnd, historyContent;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              historyData = [];
-              _context.prev = 1;
-              files = _fs["default"].readdirSync(folderPath);
-              _iterator = _createForOfIteratorHelper(files);
-              _context.prev = 4;
-              _iterator.s();
-            case 6:
-              if ((_step = _iterator.n()).done) {
-                _context.next = 17;
-                break;
-              }
-              file = _step.value;
-              if (!file.endsWith('.json')) {
-                _context.next = 15;
-                break;
-              }
-              filePath = _path["default"].join(folderPath, file);
-              _context.next = 12;
-              return _fs["default"].promises.readFile(filePath, 'utf8');
-            case 12:
-              jsonContent = _context.sent;
-              parsedContent = JSON.parse(jsonContent); // Check if JSON contains metadata and testResults
-              if (parsedContent.testResults && Array.isArray(parsedContent.testResults)) {
-                if (parsedContent.metadata) {
-                  this.metadataList.push(parsedContent.metadata);
-                }
-                (_this$testResults = this.testResults).push.apply(_this$testResults, _toConsumableArray(parsedContent.testResults));
-              } else if (Array.isArray(parsedContent)) {
-                (_this$testResults2 = this.testResults).push.apply(_this$testResults2, _toConsumableArray(parsedContent));
-              }
-            case 15:
-              _context.next = 6;
-              break;
-            case 17:
-              _context.next = 22;
-              break;
-            case 19:
-              _context.prev = 19;
-              _context.t0 = _context["catch"](4);
-              _iterator.e(_context.t0);
-            case 22:
-              _context.prev = 22;
-              _iterator.f();
-              return _context.finish(22);
-            case 25:
-              // Compute overall metadata if any metadata was collected
-              overallStart = null;
-              overallEnd = null;
-              if (this.metadataList.length > 0) {
-                this.metadataList.forEach(function (meta) {
-                  if (meta.executionStartTime) {
-                    var startTime = new Date(meta.executionStartTime);
-                    if (!overallStart || startTime < overallStart) {
-                      overallStart = startTime;
-                    }
-                  }
-                  if (meta.executionEndTime) {
-                    var endTime = new Date(meta.executionEndTime);
-                    if (!overallEnd || endTime > overallEnd) {
-                      overallEnd = endTime;
-                    }
-                  }
-                });
-              }
-              // Build a metadata object with overall values
-              this.metadata = {
-                browserName: this.metadataList[0] ? this.metadataList[0].browserName : 'N/A',
-                executionStartTime: overallStart ? overallStart.toISOString() : 'N/A',
-                executionEndTime: overallEnd ? overallEnd.toISOString() : 'N/A',
-                totalTimeInMinutes: overallStart && overallEnd ? ((overallEnd - overallStart) / (1000 * 60)).toFixed(2) : 'N/A'
-              };
+  escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 
-              // If historyPath is provided and exists, read the history JSON data.
-              if (this.historyPath && _fs["default"].existsSync(this.historyPath)) {
-                try {
-                  historyContent = _fs["default"].readFileSync(this.historyPath, 'utf8');
-                  historyData = JSON.parse(historyContent);
-                  if (!Array.isArray(historyData)) {
-                    historyData = [];
-                  }
-                } catch (error) {
-                  console.error('Error reading history file:', error);
-                }
-              }
-              this.generateHTMLReport(historyData);
-              _context.next = 36;
-              break;
-            case 33:
-              _context.prev = 33;
-              _context.t1 = _context["catch"](1);
-              console.error('Error converting JSON to HTML:', _context.t1);
-            case 36:
-            case "end":
-              return _context.stop();
+  async convertJSONFolderToHTML(folderPath) {
+    let historyData = [];
+    try {
+      const files = fs.readdirSync(folderPath);
+      for (const file of files) {
+        if (file.endsWith('.json')) {
+          const filePath = path.join(folderPath, file);
+          const jsonContent = await fs.promises.readFile(filePath, 'utf8');
+          const parsedContent = JSON.parse(jsonContent);
+          // Check if JSON contains metadata and testResults
+          if (parsedContent.testResults && Array.isArray(parsedContent.testResults)) {
+            if (parsedContent.metadata) {
+              this.metadataList.push(parsedContent.metadata);
+            }
+            this.testResults.push(...parsedContent.testResults);
+          } else if (Array.isArray(parsedContent)) {
+            this.testResults.push(...parsedContent);
           }
-        }, _callee, this, [[1, 33], [4, 19, 22, 25]]);
-      }));
-      function convertJSONFolderToHTML(_x) {
-        return _convertJSONFolderToHTML.apply(this, arguments);
+        }
       }
-      return convertJSONFolderToHTML;
-    }()
-  }, {
-    key: "generateHTMLReport",
-    value: function generateHTMLReport(historyData) {
-      var _this = this;
-      var summary = this.calculateSummaryStats();
-      var metadata = this.metadata || {
-        browserName: 'N/A',
-        executionStartTime: 'N/A',
-        executionEndTime: 'N/A',
-        totalTimeInMinutes: 'N/A'
+      // Compute overall metadata if any metadata was collected
+      let overallStart = null;
+      let overallEnd = null;
+      if (this.metadataList.length > 0) {
+        this.metadataList.forEach(meta => {
+          if (meta.executionStartTime) {
+            const startTime = new Date(meta.executionStartTime);
+            if (!overallStart || startTime < overallStart) {
+              overallStart = startTime;
+            }
+          }
+          if (meta.executionEndTime) {
+            const endTime = new Date(meta.executionEndTime);
+            if (!overallEnd || endTime > overallEnd) {
+              overallEnd = endTime;
+            }
+          }
+        });
+      }
+      // Build a metadata object with overall values
+      this.metadata = {
+        browserName: this.metadataList[0] ? this.metadataList[0].browserName : 'N/A',
+        executionStartTime: overallStart ? overallStart.toISOString() : 'N/A',
+        executionEndTime: overallEnd ? overallEnd.toISOString() : 'N/A',
+        totalTimeInMinutes: (overallStart && overallEnd)
+          ? (((overallEnd - overallStart) / (1000 * 60)).toFixed(2))
+          : 'N/A'
       };
 
-      // Format the start and end date into the desired format: "Tue, 08 Apr 2025 21:16:16 GMT"
-      var startDateStr = metadata.executionStartTime !== 'N/A' ? new Date(metadata.executionStartTime).toUTCString() : 'N/A';
-      var endDateStr = metadata.executionEndTime !== 'N/A' ? new Date(metadata.executionEndTime).toUTCString() : 'N/A';
-
-      // Compute suite statistics for current run
-      var suiteStats = {};
-      this.testResults.forEach(function (test) {
-        var suite = test.suiteName || "Unknown";
-        if (!suiteStats[suite]) {
-          suiteStats[suite] = {
-            total: 0,
-            passed: 0,
-            failed: 0
-          };
-        }
-        suiteStats[suite].total++;
-        if (test.status === 'PASSED') {
-          suiteStats[suite].passed++;
-        } else if (test.status === 'FAILED') {
-          suiteStats[suite].failed++;
-        }
-      });
-      var totalSuiteCount = Object.keys(suiteStats).length;
-      var failedSuiteCount = Object.keys(suiteStats).filter(function (suite) {
-        return suiteStats[suite].failed > 0;
-      }).length;
-      var passedSuiteCount = totalSuiteCount - failedSuiteCount;
-
-      // Process test results to embed screenshots as data URLs.
-      var processedTestResults = this.testResults.map(function (test) {
-        if (test.screenshot && !test.screenshot.startsWith('data:')) {
-          var dataUrl = _this.embedScreenshot(test.screenshot);
-          if (dataUrl) {
-            test.screenshot = dataUrl;
+      // If historyPath is provided and exists, read the history JSON data.
+      if (this.historyPath && fs.existsSync(this.historyPath)) {
+        try {
+          const historyContent = fs.readFileSync(this.historyPath, 'utf8');
+          historyData = JSON.parse(historyContent);
+          if (!Array.isArray(historyData)) {
+            historyData = [];
           }
+        } catch (error) {
+          console.error('Error reading history file:', error);
         }
-        return test;
-      });
+      }
+      this.generateHTMLReport(historyData);
+    } catch (error) {
+      console.error('Error converting JSON to HTML:', error);
+    }
+  }
 
-      // Build Unique Errors table rows.
-      var errorCounts = this.testResults.reduce(function (acc, test) {
-        if (test.errors) {
-          test.errors.forEach(function (error) {
-            var msg = error.message;
-            acc[msg] = (acc[msg] || 0) + 1;
-          });
+  generateHTMLReport(historyData) {
+    const summary = this.calculateSummaryStats();
+    const metadata = this.metadata || {
+      browserName: 'N/A',
+      executionStartTime: 'N/A',
+      executionEndTime: 'N/A',
+      totalTimeInMinutes: 'N/A',
+    };
+
+    // Format the start and end date into the desired format: "Tue, 08 Apr 2025 21:16:16 GMT"
+    const startDateStr = (metadata.executionStartTime !== 'N/A') 
+      ? new Date(metadata.executionStartTime).toUTCString() 
+      : 'N/A';
+    const endDateStr = (metadata.executionEndTime !== 'N/A') 
+      ? new Date(metadata.executionEndTime).toUTCString() 
+      : 'N/A';
+
+    // Compute suite statistics for current run
+    const suiteStats = {};
+    this.testResults.forEach(test => {
+      const suite = test.suiteName || "Unknown";
+      if (!suiteStats[suite]) {
+        suiteStats[suite] = { total: 0, passed: 0, failed: 0 };
+      }
+      suiteStats[suite].total++;
+      if (test.status === 'PASSED') {
+        suiteStats[suite].passed++;
+      } else if (test.status === 'FAILED') {
+        suiteStats[suite].failed++;
+      }
+    });
+    const totalSuiteCount = Object.keys(suiteStats).length;
+    const failedSuiteCount = Object.keys(suiteStats).filter(suite => suiteStats[suite].failed > 0).length;
+    const passedSuiteCount = totalSuiteCount - failedSuiteCount;
+
+    // Process test results to embed screenshots as data URLs.
+    const processedTestResults = this.testResults.map(test => {
+      if (test.screenshot && !test.screenshot.startsWith('data:')) {
+        const dataUrl = this.embedScreenshot(test.screenshot);
+        if (dataUrl) {
+          test.screenshot = dataUrl;
         }
-        return acc;
-      }, {});
-      var uniqueErrorsRows = Object.keys(errorCounts).map(function (errMsg, index) {
-        var count = errorCounts[errMsg];
-        return "<tr class=\"error-row\" data-error=\"".concat(encodeURIComponent(errMsg), "\" style=\"cursor: pointer;\">\n                <td>").concat(index + 1, "</td>\n                <td>").concat(_this.escapeHtml(errMsg), "</td>\n                <td>").concat(count, "</td>\n              </tr>");
-      }).join('');
+      }
+      return test;
+    });
 
-      // Group historical data by suite to build an interactive accordion.
-      var historicalBySuite = {};
-      if (historyData && historyData.length > 0) {
-        // Sort history records by timestamp (oldest first)
-        historyData.sort(function (a, b) {
-          return new Date(a.timestamp) - new Date(b.timestamp);
+    // Build Unique Errors table rows.
+    const errorCounts = this.testResults.reduce((acc, test) => {
+      if (test.errors) {
+        test.errors.forEach(error => {
+          const msg = error.message;
+          acc[msg] = (acc[msg] || 0) + 1;
         });
-        historyData.forEach(function (record) {
-          var timestamp = record.timestamp;
-          if (record.suites) {
-            Object.keys(record.suites).forEach(function (suite) {
-              var data = record.suites[suite];
-              var passRate = data.totalTests ? (data.passed / data.totalTests * 100).toFixed(2) : '0';
-              var failRate = data.totalTests ? (data.failed / data.totalTests * 100).toFixed(2) : '0';
-              if (!historicalBySuite[suite]) {
-                historicalBySuite[suite] = [];
-              }
-              historicalBySuite[suite].push({
-                timestamp: timestamp,
-                totalTests: data.totalTests || 0,
-                passed: data.passed || 0,
-                failed: data.failed || 0,
-                passRate: passRate,
-                failRate: failRate,
-                newIssues: data.defectComparison ? data.defectComparison.newDefects : [],
-                resolvedIssues: data.defectComparison ? data.defectComparison.resolvedDefects : []
-              });
+      }
+      return acc;
+    }, {});
+    const uniqueErrorsRows = Object.keys(errorCounts).map((errMsg, index) => {
+      const count = errorCounts[errMsg];
+      return `<tr class="error-row" data-error="${encodeURIComponent(errMsg)}" style="cursor: pointer;">
+                <td>${index + 1}</td>
+                <td>${this.escapeHtml(errMsg)}</td>
+                <td>${count}</td>
+              </tr>`;
+    }).join('');
+
+    // Group historical data by suite to build an interactive accordion.
+    let historicalBySuite = {};
+    if (historyData && historyData.length > 0) {
+      // Sort history records by timestamp (oldest first)
+      historyData.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      historyData.forEach(record => {
+        let timestamp = record.timestamp;
+        if (record.suites) {
+          Object.keys(record.suites).forEach(suite => {
+            const data = record.suites[suite];
+            let passRate = data.totalTests ? ((data.passed / data.totalTests) * 100).toFixed(2) : '0';
+            let failRate = data.totalTests ? ((data.failed / data.totalTests) * 100).toFixed(2) : '0';
+            if (!historicalBySuite[suite]) {
+              historicalBySuite[suite] = [];
+            }
+            historicalBySuite[suite].push({
+              timestamp: timestamp,
+              totalTests: data.totalTests || 0,
+              passed: data.passed || 0,
+              failed: data.failed || 0,
+              passRate: passRate,
+              failRate: failRate,
+              newIssues: data.defectComparison ? data.defectComparison.newDefects : [],
+              resolvedIssues: data.defectComparison ? data.defectComparison.resolvedDefects : []
             });
-          }
-        });
-      }
-
-      // Build the accordion HTML for historical execution details.
-      var historicalAccordionHTML = '';
-      if (Object.keys(historicalBySuite).length > 0) {
-        historicalAccordionHTML += '<div class="historical-accordion">';
-        Object.keys(historicalBySuite).forEach(function (suite) {
-          // For each suite, check the latest record for new/resolved issues
-          var latestRecord = historicalBySuite[suite][historicalBySuite[suite].length - 1];
-          var redDot = latestRecord.newIssues && latestRecord.newIssues.length > 0 ? '<span class="dot red-dot" title="New Issues"></span>' : '';
-          var greenDot = latestRecord.resolvedIssues && latestRecord.resolvedIssues.length > 0 ? '<span class="dot green-dot" title="Resolved Issues"></span>' : '';
-          historicalAccordionHTML += "<div class=\"suite-row\" onclick=\"toggleSuiteDetails(this)\">\n            <span>".concat(_this.escapeHtml(suite), " ").concat(redDot).concat(greenDot, "</span>\n            <span class=\"toggle-icon\">+</span>\n          </div>");
-          historicalAccordionHTML += '<div class="suite-details">';
-          historicalAccordionHTML += '<div class="scrollable-table"><table><thead><tr><th>Timestamp</th><th>Total Tests</th><th>Passed</th><th>Failed</th><th>Pass Rate (%)</th><th>Fail Rate (%)</th><th>New Issues</th><th>Resolved Issues</th></tr></thead><tbody>';
-          historicalBySuite[suite].forEach(function (record) {
-            var newIssuesHTML = 'None';
-            if (record.newIssues && record.newIssues.length > 0) {
-              newIssuesHTML = '<ul>' + record.newIssues.map(function (t) {
-                return "<li>".concat(_this.escapeHtml(t), "</li>");
-              }).join('') + '</ul>';
-            }
-            var resolvedIssuesHTML = 'None';
-            if (record.resolvedIssues && record.resolvedIssues.length > 0) {
-              resolvedIssuesHTML = '<ul>' + record.resolvedIssues.map(function (t) {
-                return "<li>".concat(_this.escapeHtml(t), "</li>");
-              }).join('') + '</ul>';
-            }
-            historicalAccordionHTML += "<tr>\n              <td>".concat(record.timestamp, "</td>\n              <td>").concat(record.totalTests, "</td>\n              <td>").concat(record.passed, "</td>\n              <td>").concat(record.failed, "</td>\n              <td>").concat(record.passRate, "</td>\n              <td>").concat(record.failRate, "</td>\n              <td>").concat(newIssuesHTML, "</td>\n              <td>").concat(resolvedIssuesHTML, "</td>\n          </tr>");
           });
-          historicalAccordionHTML += '</tbody></table></div></div>';
-        });
-        historicalAccordionHTML += '</div>';
-      }
-
-      // Build the tables container.
-      // If historical data exists and produced suite data, include the Historical Execution section;
-      // otherwise, only show the Unique Errors.
-      var tablesContainerHTML = '';
-      if (historyData && historyData.length > 0 && Object.keys(historicalBySuite).length > 0) {
-        tablesContainerHTML = "\n      <div class=\"tables-container\">\n        <div class=\"unique-errors\">\n          <h2>Unique Errors Overview</h2>\n          <table id=\"uniqueErrorsTable\">\n            <thead>\n              <tr>\n                <th>SI NO</th>\n                <th>Error Message</th>\n                <th>Occurrence</th>\n              </tr>\n            </thead>\n            <tbody>\n              ".concat(uniqueErrorsRows, "\n            </tbody>\n          </table>\n        </div>\n        <div class=\"historical-accordion-container\">\n          <h2>Historical Execution by Suite</h2>\n          <p class=\"dot-legend\"><span class=\"dot red-dot\"></span> \uD83D\uDD34 Indicates the suite has New Issues, <span class=\"dot green-dot\"></span> \uD83D\uDFE2 Indicates the suite has Resolved Issues</p>\n          <button class=\"collapse-all-btn\" onclick=\"collapseAllSuites()\">Collapse All</button>\n          ").concat(historicalAccordionHTML, "\n        </div>\n      </div>\n    ");
-      } else {
-        tablesContainerHTML = "\n      <div class=\"tables-container\">\n        <div class=\"unique-errors\">\n          <h2>Unique Errors Overview</h2>\n          <table id=\"uniqueErrorsTable\">\n            <thead>\n              <tr>\n                <th>SI NO</th>\n                <th>Error Message</th>\n                <th>Occurrence</th>\n              </tr>\n            </thead>\n            <tbody>\n              ".concat(uniqueErrorsRows, "\n            </tbody>\n          </table>\n        </div>\n      </div>\n    ");
-      }
-
-      // Include a chart container for history trends if historical data is provided.
-      var historyChartHTML = historyData && historyData.length > 0 ? "<div class=\"charts-row\" id=\"historyChartRow\">\n           <div class=\"chart-container\">\n             <canvas id=\"historyChart\"></canvas>\n             <button class=\"expand-btn\" onclick=\"openChartModal('history')\">Expand History Chart</button>\n           </div>\n         </div>" : '';
-      var htmlContent = "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Test Execution Report</title>\n  <style>\n    /* Modernized Global Styles */\n    :root {\n      --background-color: #f9f9fb;\n      --header-bg: linear-gradient(135deg, #7a3d07, #48146f);\n      --header-text: #f1f1f7;\n      --nav-bg: #2a0e3a;\n      --nav-btn-color: #f1f1f7;\n      --nav-btn-hover: #d78b2f;\n      --card-bg: #ffffff;\n      --card-shadow: 0 2px 6px rgba(0,0,0,0.08);\n      --card-hover-shadow: 0 4px 12px rgba(0,0,0,0.12);\n      --text-color: #2c2c2c;\n      --subtext-color: #636363;\n      --button-bg: #3d1a59;\n      --button-bg-hover: #d78b2f;\n      --table-border: #e0e0e0;\n      --table-header-bg: #420c5a;\n      --table-text: #1a001f;\n      --table-row-hover: #f5f5f5;\n      --filter-menu-border: #ddd;\n      --filter-menu-bg: #ffffff;\n      --primary-font: 'Roboto', sans-serif;\n      --border-radius: 8px;\n    }\n    body {\n      font-family: var(--primary-font);\n      margin: 0;\n      padding: 0;\n      background-color: var(--background-color);\n      color: var(--text-color);\n      transition: background-color 0.3s;\n    }\n    .header {\n      background: var(--header-bg);\n      color: var(--header-text);\n      padding: 30px;\n      text-align: center;\n    }\n    /* New header details styling */\n    .header-details {\n      display: flex;\n      flex-wrap: wrap;\n      justify-content: center;\n      gap: 20px;\n      font-size: 0.9em;\n      margin-top: 15px;\n    }\n    .header-details .detail-item {\n      background: rgba(255, 255, 255, 0.15);\n      padding: 10px 15px;\n      border-radius: var(--border-radius);\n    }\n    .header-details .detail-item .label {\n      font-weight: bold;\n    }\n    .nav {\n      display: flex;\n      justify-content: center;\n      background-color: var(--nav-bg);\n    }\n    .nav button {\n      background: none;\n      border: none;\n      color: var(--nav-btn-color);\n      padding: 15px 30px;\n      font-size: 1em;\n      cursor: pointer;\n      transition: background 0.3s, border-bottom 0.3s;\n    }\n    .nav button:hover,\n    .nav button.active {\n      background-color: var(--nav-btn-hover);\n      border-bottom: 3px solid var(--button-bg);\n    }\n    .container {\n      padding: 30px;\n    }\n    .tabcontent {\n      display: none;\n      animation: fadeIn 0.5s;\n    }\n    @keyframes fadeIn {\n      from { opacity: 0; }\n      to { opacity: 1; }\n    }\n    /* Modern Dashboard Styles */\n    #Dashboard {\n      background: var(--card-bg);\n      border-radius: var(--border-radius);\n      padding: 30px;\n      box-shadow: var(--card-shadow);\n      margin-bottom: 30px;\n    }\n    #Dashboard .cards-group {\n      margin-bottom: 30px;\n    }\n    #Dashboard .cards-group h2 {\n      text-align: center;\n      margin-bottom: 20px;\n      font-size: 1.5em;\n      color: var(--text-color);\n    }\n    #Dashboard .cards {\n      display: flex;\n      gap: 20px;\n      flex-wrap: wrap;\n      justify-content: center;\n    }\n    #Dashboard .card {\n      background: var(--card-bg);\n      border-radius: var(--border-radius);\n      padding: 20px;\n      box-shadow: var(--card-shadow);\n      text-align: center;\n      cursor: pointer;\n      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n      flex: 1 1 200px;\n      max-width: 250px;\n    }\n    #Dashboard .card:hover {\n      transform: translateY(-3px);\n      box-shadow: var(--card-hover-shadow);\n    }\n    #Dashboard .card h3 {\n      margin: 0 0 8px;\n      font-size: 1.1em;\n      color: var(--subtext-color);\n    }\n    #Dashboard .card p {\n      margin: 0;\n      font-size: 2em;\n      color: var(--text-color);\n      font-weight: bold;\n    }\n    /* Modern Charts Row */\n    .charts-row {\n      display: flex;\n      justify-content: space-around;\n      gap: 20px;\n      margin: 30px 0;\n      flex-wrap: wrap;\n    }\n    .chart-container {\n      background: var(--card-bg);\n      border-radius: var(--border-radius);\n      padding: 20px;\n      box-shadow: var(--card-shadow);\n      flex: 1 1 300px;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      justify-content: center;\n    }\n    .chart-container canvas {\n      width: 100%;\n      height: auto;\n      max-height: 280px;\n    }\n    .expand-btn {\n      margin-top: 10px;\n      padding: 8px 16px;\n      font-size: 0.9em;\n      cursor: pointer;\n      border: none;\n      background-color: var(--button-bg);\n      color: var(--header-text);\n      border-radius: var(--border-radius);\n      transition: background 0.3s;\n    }\n    .expand-btn:hover {\n      background-color: var(--button-bg-hover);\n    }\n    /* Modern Tables Container */\n    .tables-container {\n      display: flex;\n      flex-wrap: wrap;\n      gap: 30px;\n      margin-top: 30px;\n    }\n    .tables-container > div {\n      flex: 1 1 45%;\n      box-sizing: border-box;\n    }\n    .tables-container table {\n      width: 100%;\n      border-collapse: collapse;\n      table-layout: auto;\n    }\n    .tables-container th, .tables-container td {\n      border: 1px solid var(--table-border);\n      padding: 10px;\n      text-align: center;\n      word-wrap: break-word;\n      white-space: normal;\n      overflow-wrap: break-word;\n    }\n    /* New CSS for resizable columns */\n    #detailsTable th {\n      position: relative;\n    }\n    .resizer {\n      position: absolute;\n      right: 0;\n      top: 0;\n      width: 5px;\n      cursor: col-resize;\n      user-select: none;\n      height: 100%;\n    }\n    .tables-container th {\n      background-color: var(--table-header-bg);\n      color: #fff;\n    }\n    tr:nth-child(even) {\n      background-color: #fafafa;\n    }\n    /* Modern Historical Accordion */\n    .historical-accordion-container {\n      overflow: hidden;\n    }\n    .historical-accordion {\n      width: 100%;\n    }\n    .historical-accordion .suite-row {\n      background: #f7f7f9;\n      cursor: pointer;\n      padding: 12px 20px;\n      border-bottom: 1px solid #eaeaea;\n      font-weight: 600;\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      border-radius: var(--border-radius);\n      margin-bottom: 8px;\n      transition: background 0.2s;\n    }\n    .historical-accordion .suite-row:hover {\n      background: #ececec;\n    }\n    .historical-accordion .suite-details {\n      display: none;\n      padding: 20px;\n      background: #fff;\n      border: 1px solid #eaeaea;\n      border-radius: var(--border-radius);\n      margin-bottom: 20px;\n    }\n    .historical-accordion .toggle-icon {\n      font-size: 1.2em;\n    }\n    .historical-accordion .dot {\n      height: 10px;\n      width: 10px;\n      border-radius: 50%;\n      display: inline-block;\n      margin-left: 5px;\n    }\n    .historical-accordion .red-dot {\n      background-color: #e74c3c;\n    }\n    .historical-accordion .green-dot {\n      background-color: #27ae60;\n    }\n    .dot-legend {\n      font-size: 0.9em;\n      margin-bottom: 10px;\n    }\n    .scrollable-table {\n      max-height: 300px;\n      overflow-y: auto;\n      overflow-x: auto;\n    }\n    .scrollable-table th {\n      position: sticky;\n      top: 0;\n      background-color: var(--table-header-bg);\n      z-index: 2;\n    }\n    .collapse-all-btn {\n      margin-bottom: 15px;\n      padding: 8px 16px;\n      font-size: 0.9em;\n      cursor: pointer;\n      border: none;\n      background-color: var(--button-bg);\n      color: var(--header-text);\n      border-radius: var(--border-radius);\n      transition: background 0.3s;\n    }\n    .collapse-all-btn:hover {\n      background-color: var(--button-bg-hover);\n    }\n    /* Modern Test Details Styles */\n    #TestDetails {\n      background: var(--card-bg);\n      padding: 30px;\n      border-radius: var(--border-radius);\n      box-shadow: var(--card-shadow);\n      margin-top: 30px;\n    }\n    #TestDetails table {\n      width: 100%;\n      border-collapse: collapse;\n      margin-top: 20px;\n      font-size: 0.95em;\n      table-layout: auto;\n    }\n    #TestDetails th, #TestDetails td {\n      border: 1px solid var(--table-border);\n      padding: 12px;\n      text-align: left;\n      color: var(--table-text);\n      word-wrap: break-word;\n      white-space: normal;\n      overflow-wrap: break-word;\n    }\n    /* Updated Table Header for Timestamp (GMT) */\n    #TestDetails th:first-child {\n      background-color: var(--table-header-bg);\n      font-weight: 600;\n    }\n    #TestDetails th {\n      background-color: var(--table-header-bg);\n      color: #fff;\n      padding: 12px;\n      text-align: center;\n      border: 1px solid var(--table-border);\n    }\n    #TestDetails td.passed {\n      background-color: #d4edda !important;\n      color: #155724 !important;\n    }\n    #TestDetails td.failed {\n      background-color: #f8d7da !important;\n      color: #721c24 !important;\n    }\n    #TestDetails tbody tr:hover {\n      background-color: #f5f5f5;\n    }\n    .filter-group {\n      display: flex;\n      gap: 10px;\n      margin-bottom: 20px;\n      align-items: center;\n    }\n    .filter-group input {\n      padding: 12px;\n      border: 1px solid #ccc;\n      border-radius: var(--border-radius);\n      flex: 1;\n      font-size: 1em;\n    }\n    .filter-group button {\n      padding: 12px 20px;\n      border: none;\n      background-color: var(--button-bg);\n      color: var(--header-text);\n      border-radius: var(--border-radius);\n      cursor: pointer;\n      font-size: 1em;\n      transition: background 0.3s;\n    }\n    .filter-group button:hover {\n      background-color: var(--button-bg-hover);\n    }\n    /* Filter Menu Styles remain similar */\n    .filter-icon {\n      margin-left: 5px;\n      cursor: pointer;\n      font-size: 0.9em;\n      color: #555;\n    }\n    .filter-menu {\n      position: absolute;\n      background: var(--filter-menu-bg);\n      border: 1px solid var(--filter-menu-border);\n      padding: 12px;\n      border-radius: var(--border-radius);\n      box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n      z-index: 1000;\n    }\n    .filter-menu label {\n      display: block;\n      margin: 6px 0;\n    }\n    .filter-menu button {\n      margin-top: 10px;\n      padding: 8px 12px;\n      border: none;\n      background-color: var(--button-bg);\n      color: var(--header-text);\n      border-radius: var(--border-radius);\n      cursor: pointer;\n    }\n    .thumbnail {\n      max-width: 100px;\n      cursor: pointer;\n      transition: opacity 0.3s;\n    }\n    .thumbnail:hover {\n      opacity: 0.8;\n    }\n    /* Modal Styles */\n    .modal, .chart-modal {\n      display: none;\n      position: fixed;\n      z-index: 1000;\n      left: 0;\n      top: 0;\n      width: 100%;\n      height: 100%;\n      overflow: auto;\n      background-color: rgba(0,0,0,0.8);\n    }\n    .modal-content {\n      margin: auto;\n      display: block;\n      max-width: 90%;\n      max-height: 90%;\n    }\n    .chart-modal-content {\n      margin: auto;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      width: 90vmin;\n      height: 90vmin;\n      position: relative;\n    }\n    .close, .chart-close {\n      position: absolute;\n      top: 20px;\n      right: 30px;\n      color: var(--header-text);\n      font-size: 40px;\n      font-weight: bold;\n      cursor: pointer;\n    }\n    .error-cell {\n      max-width: 200px;\n      overflow-y: auto;\n      white-space: normal;\n      word-wrap: break-word;\n    }\n    .error-message {\n      cursor: pointer;\n      color: #b0392e;\n      text-decoration: underline;\n    }\n    .stack-trace {\n      background-color: #f7f7f9;\n      border: 1px solid #ccc;\n      padding: 8px;\n      margin-top: 6px;\n      font-family: monospace;\n      white-space: pre-wrap;\n      overflow-wrap: break-word;\n    }\n    .suite-cell {\n      text-align: center;\n      font-weight: bold;\n      vertical-align: middle;\n    }\n    .error-block {\n      margin-bottom: 10px;\n      padding-bottom: 4px;\n      border-bottom: 1px dashed #ccc;\n    }\n    /* Pagination Styles */\n    .pagination {\n      text-align: center;\n      margin-top: 30px;\n    }\n    .pagination button {\n      background-color: var(--button-bg);\n      color: var(--header-text);\n      border: none;\n      padding: 10px 14px;\n      margin: 0 4px;\n      border-radius: var(--border-radius);\n      cursor: pointer;\n      transition: background 0.3s;\n    }\n    .pagination button:hover {\n      background-color: var(--button-bg-hover);\n    }\n    .pagination button:disabled {\n      opacity: 0.6;\n      cursor: not-allowed;\n    }\n    .pagination .page-number {\n      background-color: #e0e0e0;\n      color: #555;\n      font-size: 0.9em;\n      padding: 6px 8px;\n      margin: 0 2px;\n      border-radius: 4px;\n      min-width: 24px;\n    }\n    .pagination .page-number:hover {\n      background-color: #d0d0d0;\n    }\n    .pagination .page-number:disabled {\n      opacity: 0.6;\n      cursor: not-allowed;\n    }\n    /* Common Table Header Style Override */\n    table th {\n      background-color: var(--table-header-bg) !important;\n      color: #fff !important;\n      padding: 12px !important;\n      text-align: center !important;\n      border: 1px solid var(--table-border) !important;\n    }\n  </style>\n  <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>\n  <script src=\"https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels\"></script>\n</head>\n<body>\n  <div class=\"header\">\n    <h1>Test Execution Report</h1>\n    <div class=\"header-details\">\n      <div class=\"detail-item\"><span class=\"label\">Browser Name:</span> ".concat(metadata.browserName, "</div>\n      <div class=\"detail-item\"><span class=\"label\">Start:</span> ").concat(startDateStr, "</div>\n      <div class=\"detail-item\"><span class=\"label\">End:</span> ").concat(endDateStr, "</div>\n      <div class=\"detail-item\"><span class=\"label\">Duration (mins):</span> ").concat(metadata.totalTimeInMinutes, "</div>\n    </div>\n  </div>\n  <div class=\"nav\">\n    <button class=\"tablinks\" onclick=\"openTab(event, 'Dashboard')\">Dashboard</button>\n    <button class=\"tablinks\" onclick=\"openTab(event, 'TestDetails')\">Test Details</button>\n  </div>\n  <div class=\"container\">\n    <div id=\"Dashboard\" class=\"tabcontent\" style=\"display: block;\">\n      <!-- Overall Test Information Group -->\n      <div class=\"cards-group\">\n        <h2>Overall Test Information</h2>\n        <div class=\"cards\">\n          <div class=\"card\" onclick=\"showAllTestDetails()\" title=\"View All Tests\">\n            <h3>Total Tests</h3>\n            <p>").concat(summary.total, "</p>\n          </div>\n          <div class=\"card\" onclick=\"filterByStatus('PASSED')\" title=\"View Passed Tests\">\n            <h3>Passed</h3>\n            <p>").concat(summary.passed, "</p>\n          </div>\n          <div class=\"card\" onclick=\"filterByStatus('FAILED')\" title=\"View Failed Tests\">\n            <h3>Failed</h3>\n            <p>").concat(summary.failed, "</p>\n          </div>\n        </div>\n      </div>\n      <!-- Suite Information Group -->\n      <div class=\"cards-group\">\n        <h2>Suite Information</h2>\n        <div class=\"cards\">\n          <div class=\"card\" title=\"Total Suites\">\n            <h3>Total Suites</h3>\n            <p>").concat(totalSuiteCount, "</p>\n          </div>\n          <div class=\"card\" onclick=\"filterByPassedSuites()\" title=\"View Passed Suites\">\n            <h3>Passed Suites</h3>\n            <p>").concat(passedSuiteCount, "</p>\n          </div>\n          <div class=\"card\" onclick=\"filterByFailedSuites()\" title=\"View Failed Suites\">\n            <h3>Failed Suites</h3>\n            <p>").concat(failedSuiteCount, "</p>\n          </div>\n        </div>\n      </div>\n      <!-- Charts Row -->\n      <div class=\"charts-row\">\n        <div class=\"chart-container\">\n          <canvas id=\"statusChart\"></canvas>\n          <button class=\"expand-btn\" onclick=\"openChartModal('overall')\">Expand Chart</button>\n        </div>\n        <div class=\"chart-container\">\n          <canvas id=\"suiteChart\"></canvas>\n          <button class=\"expand-btn\" onclick=\"openChartModal('suite')\">Expand Chart</button>\n        </div>\n      </div>\n      <!-- History Chart (if available) -->\n      ").concat(historyChartHTML, "\n      <!-- Tables Container: Unique Errors and Historical Execution Accordion -->\n      ").concat(tablesContainerHTML, "\n    </div>\n    <div id=\"TestDetails\" class=\"tabcontent\">\n      <div class=\"filter-group\">\n        <input type=\"text\" id=\"filterSuiteDetails\" placeholder=\"Search Suite Name...\" onkeyup=\"applyFilters()\">\n        <button onclick=\"clearFilters()\">Clear Filters</button>\n      </div>\n      <button onclick=\"exportTableToExcel('detailsTable', 'TestDetailsReport')\" style=\"margin-bottom: 15px;\">Export to Excel</button>\n      <table id=\"detailsTable\">\n        <thead>\n          <tr>\n            <!-- Updated header for timestamp with (GMT) -->\n            <th>Timestamp (GMT)</th>\n            <th>Suite Name <span class=\"filter-icon\" onclick=\"openFilterMenu(event, 1)\">&#x1F50D;</span></th>\n            <th>Test Name <span class=\"filter-icon\" onclick=\"openFilterMenu(event, 2)\">&#x1F50D;</span></th>\n            <th>Status <span class=\"filter-icon\" onclick=\"openFilterMenu(event, 3)\">&#x1F50D;</span></th>\n            <th>Error <span class=\"filter-icon\" onclick=\"openFilterMenu(event, 4)\">&#x1F50D;</span></th>\n            <th>Screenshot</th>\n          </tr>\n        </thead>\n        <tbody id=\"tableBody\">\n          <!-- Dynamic rows will be rendered here -->\n        </tbody>\n      </table>\n      <div id=\"paginationControls\"></div>\n    </div>\n  </div>\n  \n  <!-- Image Modal -->\n  <div id=\"myModal\" class=\"modal\">\n    <span class=\"close\" onclick=\"closeModal()\">&times;</span>\n    <img class=\"modal-content\" id=\"modalImage\">\n  </div>\n  \n  <!-- Chart Modal -->\n  <div id=\"chartModal\" class=\"chart-modal\">\n    <div class=\"chart-modal-content\">\n      <span class=\"chart-close\" onclick=\"closeChartModal()\">&times;</span>\n      <canvas id=\"chartModalCanvas\"></canvas>\n    </div>\n  </div>\n  \n  <script>\n    // Expose processed data to client-side.\n    window.allTestResults = ").concat(JSON.stringify(processedTestResults), ";\n    window.filteredResults = window.allTestResults.slice();\n    window.currentPage = 1;\n    window.suiteStats = ").concat(JSON.stringify(suiteStats), ";\n    window.historyData = ").concat(JSON.stringify(historyData), ";\n    \n    let activeFilters = {};\n    let currentFilterMenu = null;\n    let statusChartInstance, suiteChartInstance, modalChartInstance, historyChartInstance;\n    const PAGE_SIZE = 50;\n    \n    function navigateToError(errorMsg) {\n      activeFilters[4] = [errorMsg];\n      applyFilters();\n      openTab(null, 'TestDetails');\n    }\n    \n    document.addEventListener(\"DOMContentLoaded\", function() {\n      document.querySelectorAll('#uniqueErrorsTable .error-row').forEach(function(row) {\n        row.addEventListener('click', function() {\n          var errorMsg = decodeURIComponent(row.getAttribute('data-error'));\n          navigateToError(errorMsg);\n        });\n      });\n      renderTable(1);\n      openTab(null, 'Dashboard');\n\n      // Initialize column resizing for the Test Details table.\n      const table = document.getElementById('detailsTable');\n      if (table) {\n        makeColumnsResizable(table);\n      }\n    });\n    \n    function toggleSuiteDetails(element) {\n      var details = element.nextElementSibling;\n      var icon = element.querySelector('.toggle-icon');\n      if (details.style.display === 'none' || details.style.display === '') {\n        details.style.display = 'block';\n        icon.textContent = '-';\n      } else {\n        details.style.display = 'none';\n        icon.textContent = '+';\n      }\n    }\n    \n    function collapseAllSuites() {\n      var suiteDetailsElements = document.querySelectorAll('.historical-accordion .suite-details');\n      suiteDetailsElements.forEach(function(details) {\n        details.style.display = 'none';\n        var suiteRow = details.previousElementSibling;\n        if (suiteRow) {\n          var icon = suiteRow.querySelector('.toggle-icon');\n          if (icon) icon.textContent = '+';\n        }\n      });\n    }\n    \n    function renderTable(page) {\n      page = page || 1;\n      window.currentPage = page;\n      const start = (page - 1) * PAGE_SIZE;\n      const end = start + PAGE_SIZE;\n      const currentData = window.filteredResults.slice(start, end);\n      const tbody = document.getElementById('tableBody');\n      let html = '';\n      currentData.forEach(test => {\n        let screenshotHTML = 'No Screenshot';\n        const dataUrl = embedScreenshot(test.screenshot);\n        if (dataUrl) {\n          screenshotHTML = `<img src=\"${dataUrl}\" class=\"thumbnail\" alt=\"Screenshot for ${escapeHtml(test.testName)}\" onclick=\"openModal(this.src)\">`;\n        }\n        html += `<tr data-suite=\"${escapeHtml(test.suiteName || '')}\" data-test-name=\"${escapeHtml(test.testName || '')}\" data-status=\"${test.status || ''}\" data-error=\"${escapeHtml(test.errors ? test.errors.map(e => e.message).join(' | ') : '')}\">\n          <td>${test.timestamp || ''}</td>\n          <td class=\"suite-cell\">${escapeHtml(test.suiteName || '')}</td>\n          <td>${escapeHtml(test.testName || '')}</td>\n          <td class=\"${test.status === 'PASSED' ? 'passed' : test.status === 'FAILED' ? 'failed' : ''}\">${test.status || ''}</td>\n          <td class=\"error-cell\">\n            ${test.errors ? test.errors.map((error, idx) => `\n              <div class=\"error-block\">\n                <div class=\"error-message\" onclick=\"toggleStack(this)\">Error ${idx + 1}: ${escapeHtml(error.message)}</div>\n                <div class=\"stack-trace\" style=\"display: none;\">${escapeHtml(error.stack || 'No stack trace')}</div>\n              </div>`).join('') : ''}\n          </td>\n          <td>${screenshotHTML}</td>\n        </tr>`;\n      });\n      tbody.innerHTML = html;\n      mergeSuiteCellsAdvanced();\n      renderPaginationControls();\n    }\n    \n    function renderPaginationControls() {\n      const totalPages = Math.ceil(window.filteredResults.length / PAGE_SIZE);\n      const container = document.getElementById('paginationControls');\n      let html = '';\n      if (totalPages > 1) {\n        html += `<button onclick=\"changePage(1)\" ${window.currentPage === 1 ? 'disabled' : ''}>First</button>`;\n        html += ` <button onclick=\"changePage(${Math.max(window.currentPage - 1, 1)})\" ${window.currentPage === 1 ? 'disabled' : ''}>Previous</button> `;\n        for (let i = 1; i <= totalPages; i++) {\n          html += `<button class=\"page-number\" onclick=\"changePage(${i})\" ${window.currentPage === i ? 'disabled' : ''}>${i}</button>`;\n        }\n        html += ` <button onclick=\"changePage(${Math.min(window.currentPage + 1, totalPages)})\" ${window.currentPage === totalPages ? 'disabled' : ''}>Next</button> `;\n        html += ` <button onclick=\"changePage(${totalPages})\" ${window.currentPage === totalPages ? 'disabled' : ''}>Last</button>`;\n      }\n      container.innerHTML = '<div class=\"pagination\">' + html + '</div>';\n    }\n    \n    function changePage(page) {\n      renderTable(page);\n    }\n    \n    function applyFilters() {\n      const suiteFilterText = document.getElementById(\"filterSuiteDetails\").value.toUpperCase();\n      window.filteredResults = window.allTestResults.filter(test => {\n        const suiteValue = (test.suiteName || \"\").toUpperCase();\n        let textMatch = suiteValue.indexOf(suiteFilterText) > -1;\n        let columnMatch = true;\n        if (activeFilters[1] && activeFilters[1].length > 0 && !activeFilters[1].includes(test.suiteName || '')) columnMatch = false;\n        if (activeFilters[2] && activeFilters[2].length > 0 && !activeFilters[2].includes(test.testName || '')) columnMatch = false;\n        if (activeFilters[3] && activeFilters[3].length > 0 && !activeFilters[3].includes(test.status || '')) columnMatch = false;\n        if (activeFilters[4] && activeFilters[4].length > 0) {\n          const testErrorMessages = (test.errors && test.errors.length > 0) ? test.errors.map(e => e.message) : [\"No Error\"];\n          if (!activeFilters[4].some(filterMsg => testErrorMessages.includes(filterMsg))) columnMatch = false;\n        }\n        return textMatch && columnMatch;\n      });\n      renderTable(1);\n    }\n    \n    function clearFilters() {\n      document.getElementById(\"filterSuiteDetails\").value = \"\";\n      activeFilters = {};\n      window.filteredResults = window.allTestResults.slice();\n      renderTable(1);\n    }\n    \n    function openFilterMenu(event, colIndex) {\n      event.stopPropagation();\n      if (currentFilterMenu) {\n        currentFilterMenu.remove();\n        currentFilterMenu = null;\n      }\n      const menu = document.createElement('div');\n      menu.className = 'filter-menu';\n      \n      const searchInput = document.createElement('input');\n      searchInput.type = 'text';\n      searchInput.placeholder = 'Search...';\n      searchInput.style.width = '100%';\n      searchInput.style.marginBottom = '10px';\n      menu.appendChild(searchInput);\n      \n      const controlsDiv = document.createElement('div');\n      controlsDiv.style.marginBottom = '10px';\n      \n      const uncheckAllBtn = document.createElement('button');\n      uncheckAllBtn.textContent = 'Uncheck All';\n      uncheckAllBtn.onclick = function(e) {\n        e.stopPropagation();\n        const checkboxes = optionsContainer.querySelectorAll('input[type=\"checkbox\"]');\n        checkboxes.forEach(chk => chk.checked = false);\n      };\n      controlsDiv.appendChild(uncheckAllBtn);\n      \n      const applyBtn = document.createElement('button');\n      applyBtn.textContent = 'Apply';\n      applyBtn.style.marginLeft = '5px';\n      applyBtn.onclick = function(e) {\n        e.stopPropagation();\n        applyFilterMenu(colIndex, menu);\n      };\n      controlsDiv.appendChild(applyBtn);\n      \n      const clearBtn = document.createElement('button');\n      clearBtn.textContent = 'Clear';\n      clearBtn.style.marginLeft = '5px';\n      clearBtn.onclick = function(e) {\n        e.stopPropagation();\n        clearFilterMenu(colIndex, menu);\n      };\n      controlsDiv.appendChild(clearBtn);\n      \n      menu.appendChild(controlsDiv);\n      \n      let dataset = window.allTestResults.filter(test => {\n        for (let key in activeFilters) {\n          if (Number(key) === colIndex) continue;\n          if (activeFilters[key] && activeFilters[key].length > 0) {\n            let value = \"\";\n            if (Number(key) === 1) value = test.suiteName || \"\";\n            else if (Number(key) === 2) value = test.testName || \"\";\n            else if (Number(key) === 3) value = test.status || \"\";\n            else if (Number(key) === 4) {\n              if (test.errors && test.errors.length > 0) {\n                value = test.errors.map(e => e.message).join(' | ');\n              } else {\n                value = \"No Error\";\n              }\n            }\n            if (!activeFilters[key].includes(value)) return false;\n          }\n        }\n        return true;\n      });\n      \n      let uniqueValues = new Set();\n      dataset.forEach(test => {\n        if (colIndex === 1) {\n          uniqueValues.add(test.suiteName || \"\");\n        } else if (colIndex === 2) {\n          uniqueValues.add(test.testName || \"\");\n        } else if (colIndex === 3) {\n          uniqueValues.add(test.status || \"\");\n        } else if (colIndex === 4) {\n          if (test.errors && test.errors.length > 0) {\n            test.errors.forEach(e => uniqueValues.add(e.message));\n          } else {\n            uniqueValues.add(\"No Error\");\n          }\n        }\n      });\n      \n      const optionsContainer = document.createElement('div');\n      let valuesArray = Array.from(uniqueValues).sort();\n      valuesArray.forEach(value => {\n        const label = document.createElement('label');\n        label.className = 'filter-option';\n        const checkbox = document.createElement('input');\n        checkbox.type = 'checkbox';\n        checkbox.value = value;\n        if (activeFilters[colIndex]) {\n          checkbox.checked = activeFilters[colIndex].includes(value);\n        } else {\n          checkbox.checked = true;\n        }\n        label.appendChild(checkbox);\n        label.appendChild(document.createTextNode(' ' + value));\n        optionsContainer.appendChild(label);\n      });\n      menu.appendChild(optionsContainer);\n      \n      searchInput.addEventListener('keyup', function() {\n        const filterValue = searchInput.value.toLowerCase();\n        const optionLabels = optionsContainer.querySelectorAll('.filter-option');\n        optionLabels.forEach(label => {\n          label.style.display = label.textContent.toLowerCase().includes(filterValue) ? '' : 'none';\n        });\n      });\n      \n      document.body.appendChild(menu);\n      currentFilterMenu = menu;\n      const rect = event.target.getBoundingClientRect();\n      menu.style.top = rect.bottom + window.scrollY + 'px';\n      menu.style.left = rect.left + window.scrollX + 'px';\n      menu.onclick = function(e) {\n        e.stopPropagation();\n      };\n      document.addEventListener('click', closeCurrentFilterMenu);\n    }\n    \n    function applyFilterMenu(colIndex, menu) {\n      const checkboxes = menu.querySelectorAll('input[type=\"checkbox\"]');\n      const selectedValues = [];\n      checkboxes.forEach(chk => {\n        if (chk.checked) selectedValues.push(chk.value);\n      });\n      activeFilters[colIndex] = selectedValues;\n      applyFilters();\n      menu.remove();\n      currentFilterMenu = null;\n      document.removeEventListener('click', closeCurrentFilterMenu);\n    }\n    \n    function clearFilterMenu(colIndex, menu) {\n      activeFilters[colIndex] = [];\n      applyFilters();\n      menu.remove();\n      currentFilterMenu = null;\n      document.removeEventListener('click', closeCurrentFilterMenu);\n    }\n    \n    function closeCurrentFilterMenu() {\n      if (currentFilterMenu) {\n        currentFilterMenu.remove();\n        currentFilterMenu = null;\n        document.removeEventListener('click', closeCurrentFilterMenu);\n      }\n    }\n    \n    function mergeSuiteCellsAdvanced() {\n      const tbody = document.getElementById(\"detailsTable\").tBodies[0];\n      const allRows = Array.from(tbody.rows).filter(row => row.style.display !== \"none\");\n      let i = 0;\n      while (i < allRows.length) {\n        const currentSuite = allRows[i].dataset.suite || \"\";\n        let count = 1;\n        let j = i + 1;\n        while (j < allRows.length && (allRows[j].dataset.suite || \"\") === currentSuite) {\n          count++;\n          j++;\n        }\n        if (count > 1) {\n          const firstRow = allRows[i];\n          const suiteCell = firstRow.querySelector('.suite-cell');\n          if (suiteCell) suiteCell.rowSpan = count;\n          for (let k = i + 1; k < j; k++) {\n            const cellToRemove = allRows[k].querySelector('.suite-cell');\n            if (cellToRemove) cellToRemove.parentNode.removeChild(cellToRemove);\n          }\n        }\n        i = j;\n      }\n    }\n    \n    function embedScreenshot(screenshotPath) {\n      if (screenshotPath && screenshotPath.startsWith('data:')) return screenshotPath;\n      return null;\n    }\n    \n    // Updated Excel export function using concatenated string for style block\n    function exportTableToExcel(tableID, filename = '') {\n      var dataType = 'application/vnd.ms-excel';\n      var style = '<style>' +\n        'table { border-collapse: collapse; width: 100%; font-family: Roboto, sans-serif; }' +\n        'table, th, td { border: 1px solid #e0e0e0; }' +\n        'th, td { padding: 12px; text-align: center; word-wrap: break-word; white-space: normal; }' +\n        'th { background-color: #420c5a; color: #fff; font-weight: bold; }' +\n        'td.passed { background-color: #d4edda; color: #155724; }' +\n        'td.failed { background-color: #f8d7da; color: #721c24; }' +\n        '</style>';\n      \n      let htmlTable = '<table><thead><tr><th>Timestamp (GMT)</th><th>Suite Name</th><th>Test Name</th><th>Status</th><th>Error</th></tr></thead><tbody>';\n      const results = window.filteredResults;\n      for (let i = 0; i < results.length; i++) {\n        const test = results[i];\n        let suiteCell = '';\n        if (i === 0 || (results[i].suiteName !== results[i - 1].suiteName)) {\n          let rowspan = 1;\n          for (let j = i + 1; j < results.length; j++) {\n            if (results[j].suiteName === test.suiteName) {\n              rowspan++;\n            } else {\n              break;\n            }\n          }\n          suiteCell = '<td rowspan=\"' + rowspan + '\">' + (test.suiteName || '') + '</td>';\n        }\n        let statusCell = '';\n        if (test.status === 'PASSED') {\n          statusCell = '<td class=\"passed\">' + (test.status || '') + '</td>';\n        } else if (test.status === 'FAILED') {\n          statusCell = '<td class=\"failed\">' + (test.status || '') + '</td>';\n        } else {\n          statusCell = '<td>' + (test.status || '') + '</td>';\n        }\n        \n        htmlTable += '<tr>';\n        htmlTable += '<td>' + (test.timestamp || '') + '</td>';\n        htmlTable += suiteCell;\n        htmlTable += '<td>' + (test.testName || '') + '</td>';\n        htmlTable += statusCell;\n        htmlTable += '<td>' + (test.errors ? test.errors.map(e => e.message).join('; ') : '') + '</td>';\n        htmlTable += '</tr>';\n      }\n      htmlTable += '</tbody></table>';\n      \n      var htmlContent = '<html><head><meta charset=\"UTF-8\">' + style + '</head><body>' + htmlTable + '</body></html>';\n      \n      var downloadLink = document.createElement(\"a\");\n      document.body.appendChild(downloadLink);\n      filename = filename ? filename + '.xls' : 'report.xls';\n      if (navigator.msSaveOrOpenBlob) {\n        var blob = new Blob(['\uFEFF', htmlContent], { type: dataType });\n        navigator.msSaveOrOpenBlob(blob, filename);\n      } else {\n        downloadLink.href = 'data:' + dataType + ', ' + encodeURIComponent(htmlContent);\n        downloadLink.download = filename;\n        downloadLink.click();\n      }\n      document.body.removeChild(downloadLink);\n    }\n          \n    function openModal(src) {\n      const modal = document.getElementById(\"myModal\");\n      const modalImg = document.getElementById(\"modalImage\");\n      modal.style.display = \"block\";\n      modalImg.src = src;\n    }\n    \n    function closeModal() {\n      document.getElementById(\"myModal\").style.display = \"none\";\n    }\n    \n    function toggleStack(element) {\n      var stackTraceDiv = element.nextElementSibling;\n      if (stackTraceDiv.style.display === \"none\") {\n        stackTraceDiv.style.display = \"block\";\n      } else {\n        stackTraceDiv.style.display = \"none\";\n      }\n    }\n    \n    function openChartModal(type) {\n      document.getElementById(\"chartModal\").style.display = \"block\";\n      const modalCanvas = document.getElementById(\"chartModalCanvas\");\n      const ctx = modalCanvas.getContext('2d');\n      if (modalChartInstance) {\n        modalChartInstance.destroy();\n      }\n      if (type === 'overall') {\n        modalChartInstance = new Chart(ctx, {\n          type: 'pie',\n          data: {\n            labels: ['Passed', 'Failed'],\n            datasets: [{\n              data: [").concat(summary.passed, ", ").concat(summary.failed, "],\n              backgroundColor: ['#28a745', '#dc3545']\n            }]\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              datalabels: {\n                color: '#fff',\n                font: { weight: 'bold', size: 16 },\n                formatter: function(value, context) {\n                  let sum = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);\n                  let percentage = sum ? Math.round((value / sum) * 100) + '%' : '0%';\n                  return percentage;\n                }\n              },\n              title: { display: true, text: 'Overall Execution Status' },\n              legend: { position: 'bottom' }\n            }\n          },\n          plugins: [ChartDataLabels]\n        });\n      } else if (type === 'suite') {\n        const suiteNames = Object.keys(").concat(JSON.stringify(suiteStats), ");\n        const passPercentages = suiteNames.map(suite => {\n          const stats = ").concat(JSON.stringify(suiteStats), "[suite];\n          return stats.total > 0 ? parseFloat((stats.passed / stats.total * 100).toFixed(2)) : 0;\n        });\n        const failPercentages = suiteNames.map(suite => {\n          const stats = ").concat(JSON.stringify(suiteStats), "[suite];\n          return stats.total > 0 ? parseFloat((stats.failed / stats.total * 100).toFixed(2)) : 0;\n        });\n        modalChartInstance = new Chart(ctx, {\n          type: 'bar',\n          data: {\n            labels: suiteNames.map(name => name.length > 10 ? name.slice(0,10) + '...' : name),\n            datasets: [\n              { label: 'Passed %', data: passPercentages, backgroundColor: '#28a745' },\n              { label: 'Failed %', data: failPercentages, backgroundColor: '#dc3545' }\n            ]\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              title: { display: true, text: 'Suite Level Pass/Fail Percentage' },\n              legend: { position: 'bottom' },\n              tooltip: {\n                callbacks: {\n                  title: function(context) {\n                    return suiteNames[context[0].dataIndex];\n                  }\n                }\n              }\n            },\n            scales: {\n              x: { stacked: true, ticks: { font: { size: 12 } } },\n              y: { stacked: true, beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } }\n            }\n          }\n        });\n      } else if (type === 'history') {\n        if (!window.historyData || window.historyData.length === 0) return;\n        const labels = window.historyData.map(record => record.timestamp);\n        const totalTests = window.historyData.map(record => record.totalTests);\n        const passed = window.historyData.map(record => record.passed);\n        const failed = window.historyData.map(record => record.failed);\n        modalChartInstance = new Chart(ctx, {\n          type: 'line',\n          data: {\n            labels: labels,\n            datasets: [\n              { label: 'Total Tests', data: totalTests, borderColor: '#007bff', fill: false },\n              { label: 'Passed', data: passed, borderColor: '#28a745', fill: false },\n              { label: 'Failed', data: failed, borderColor: '#dc3545', fill: false }\n            ]\n          },\n          options: {\n            responsive: true,\n            maintainAspectRatio: false,\n            plugins: {\n              title: { display: true, text: 'Historical Test Execution Trends' },\n              legend: { position: 'bottom' }\n            }\n          }\n        });\n      }\n    }\n    \n    function closeChartModal() {\n      document.getElementById(\"chartModal\").style.display = \"none\";\n    }\n    \n    function drawChart() {\n      const canvas = document.getElementById('statusChart');\n      if (!canvas) return;\n      const ctx = canvas.getContext('2d');\n      if (statusChartInstance) {\n        statusChartInstance.destroy();\n      }\n      statusChartInstance = new Chart(ctx, {\n        type: 'pie',\n        data: {\n          labels: ['Passed', 'Failed'],\n          datasets: [{\n            data: [").concat(summary.passed, ", ").concat(summary.failed, "],\n            backgroundColor: ['#28a745', '#dc3545']\n          }]\n        },\n        options: {\n          responsive: true,\n          maintainAspectRatio: false,\n          aspectRatio: 1,\n          plugins: {\n            datalabels: {\n              color: '#fff',\n              font: { weight: 'bold', size: 16 },\n              formatter: function(value, context) {\n                let sum = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);\n                let percentage = sum ? Math.round((value / sum) * 100) + '%' : '0%';\n                return percentage;\n              }\n            },\n            title: { display: true, text: 'Overall Execution Status' },\n            legend: { position: 'bottom' }\n          }\n        },\n        plugins: [ChartDataLabels]\n      });\n    }\n    \n    function drawSuiteChart() {\n      const canvas = document.getElementById('suiteChart');\n      if (!canvas) return;\n      const ctx = canvas.getContext('2d');\n      if (suiteChartInstance) {\n        suiteChartInstance.destroy();\n      }\n      \n      const MAX_SUITES_DISPLAYED = 10;\n      const suiteNamesAll = Object.keys(").concat(JSON.stringify(suiteStats), ");\n      let suiteNames = suiteNamesAll;\n      let passPercentagesAll = suiteNamesAll.map(suite => {\n        const stats = ").concat(JSON.stringify(suiteStats), "[suite];\n        return stats.total > 0 ? parseFloat((stats.passed / stats.total * 100).toFixed(2)) : 0;\n      });\n      let failPercentagesAll = suiteNamesAll.map(suite => {\n        const stats = ").concat(JSON.stringify(suiteStats), "[suite];\n        return stats.total > 0 ? parseFloat((stats.failed / stats.total * 100).toFixed(2)) : 0;\n      });\n      \n      if (suiteNamesAll.length > MAX_SUITES_DISPLAYED) {\n          suiteNames = suiteNamesAll.slice(0, MAX_SUITES_DISPLAYED);\n          passPercentagesAll = passPercentagesAll.slice(0, MAX_SUITES_DISPLAYED);\n          failPercentagesAll = failPercentagesAll.slice(0, MAX_SUITES_DISPLAYED);\n      }\n      \n      const maxLabelLength = 10;\n      const truncatedNames = suiteNames.map(name => name.length > maxLabelLength ? name.slice(0, maxLabelLength) + '...' : name);\n      const fontSize = suiteNames.length > 10 ? 10 : 12;\n      \n      suiteChartInstance = new Chart(ctx, {\n        type: 'bar',\n        data: {\n          labels: truncatedNames,\n          datasets: [\n            { label: 'Passed %', data: passPercentagesAll, backgroundColor: '#28a745' },\n            { label: 'Failed %', data: failPercentagesAll, backgroundColor: '#dc3545' }\n          ]\n        },\n        options: {\n          responsive: true,\n          maintainAspectRatio: false,\n          plugins: {\n            title: { display: true, text: 'Suite Level Pass/Fail Percentage' },\n            legend: { position: 'bottom' },\n            tooltip: {\n              callbacks: {\n                title: function(context) {\n                  return suiteNames[context[0].dataIndex];\n                }\n              }\n            }\n          },\n          scales: {\n            x: { stacked: true, ticks: { font: { size: fontSize } } },\n            y: { stacked: true, beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } }\n          }\n        }\n      });\n    }\n    \n    function drawHistoryChart() {\n      if (!window.historyData || window.historyData.length === 0) return;\n      const canvas = document.getElementById('historyChart');\n      if (!canvas) return;\n      const ctx = canvas.getContext('2d');\n      if (historyChartInstance) {\n        historyChartInstance.destroy();\n      }\n      const labels = window.historyData.map(record => record.timestamp);\n      const totalTests = window.historyData.map(record => record.totalTests);\n      const passed = window.historyData.map(record => record.passed);\n      const failed = window.historyData.map(record => record.failed);\n      historyChartInstance = new Chart(ctx, {\n        type: 'line',\n        data: {\n          labels: labels,\n          datasets: [\n            { label: 'Total Tests', data: totalTests, borderColor: '#007bff', fill: false },\n            { label: 'Passed', data: passed, borderColor: '#28a745', fill: false },\n            { label: 'Failed', data: failed, borderColor: '#dc3545', fill: false }\n          ]\n        },\n        options: {\n          responsive: true,\n          maintainAspectRatio: false,\n          scales: {\n            x: { ticks: { display: false } }\n          },\n          plugins: {\n            title: { display: true, text: 'Historical Test Execution Trends' },\n            legend: { position: 'bottom' }\n          }\n        }\n      });\n    }\n    \n    function openTab(evt, tabName) {\n      const tabcontent = document.getElementsByClassName(\"tabcontent\");\n      for (let i = 0; i < tabcontent.length; i++) {\n        tabcontent[i].style.display = \"none\";\n      }\n      const tablinks = document.getElementsByClassName(\"tablinks\");\n      for (let i = 0; i < tablinks.length; i++) {\n        tablinks[i].classList.remove(\"active\");\n      }\n      document.getElementById(tabName).style.display = \"block\";\n      if (evt && evt.currentTarget) {\n        evt.currentTarget.classList.add(\"active\");\n      }\n      if (tabName === 'Dashboard'){\n        setTimeout(() => {\n          drawChart();\n          drawSuiteChart();\n          if (window.historyData && window.historyData.length > 0) {\n            document.getElementById(\"historyChartRow\").style.display = \"flex\";\n            drawHistoryChart();\n          }\n        }, 0);\n      }\n      mergeSuiteCellsAdvanced();\n    }\n    \n    function showAllTestDetails() {\n      clearFilters();\n      openTab(null, 'TestDetails');\n    }\n    \n    function filterByStatus(status) {\n      document.getElementById(\"filterSuiteDetails\").value = \"\";\n      activeFilters = {};\n      window.filteredResults = window.allTestResults.filter(test => test.status === status);\n      renderTable(1);\n      openTab(null, 'TestDetails');\n    }\n    \n    function filterByErrorTests() {\n      window.filteredResults = window.allTestResults.filter(test => test.errors && test.errors.length > 0);\n      renderTable(1);\n      openTab(null, 'TestDetails');\n    }\n    \n    function filterByFailedSuites() {\n      const failedSuites = new Set();\n      window.allTestResults.forEach(test => {\n        if (test.status === 'FAILED' && test.suiteName) {\n          failedSuites.add(test.suiteName);\n        }\n      });\n      window.filteredResults = window.allTestResults.filter(test => failedSuites.has(test.suiteName));\n      renderTable(1);\n      openTab(null, 'TestDetails');\n    }\n    \n    function filterByPassedSuites() {\n      const passedSuites = Object.keys(window.suiteStats).filter(suite => window.suiteStats[suite].failed === 0);\n      window.filteredResults = window.allTestResults.filter(test => passedSuites.includes(test.suiteName));\n      renderTable(1);\n      openTab(null, 'TestDetails');\n    }\n    \n    function escapeHtml(str) {\n      if (!str) return '';\n      return str\n        .replace(/&/g, '&amp;')\n        .replace(/</g, '&lt;')\n        .replace(/>/g, '&gt;')\n        .replace(/\"/g, '&quot;')\n        .replace(/'/g, '&#039;');\n    }\n\n    // Function to add resizer handles and enable column resizing\n    function makeColumnsResizable(table) {\n      const cols = table.querySelectorAll('th');\n      cols.forEach(col => {\n        // Ensure the th has relative positioning.\n        col.style.position = 'relative';\n        // Create the resizer div.\n        const resizer = document.createElement('div');\n        resizer.classList.add('resizer');\n        col.appendChild(resizer);\n        \n        // Variables to store initial positions.\n        let startX, startWidth;\n        \n        resizer.addEventListener('mousedown', function(e) {\n          startX = e.pageX;\n          startWidth = col.offsetWidth;\n          document.addEventListener('mousemove', resizeColumn);\n          document.addEventListener('mouseup', stopResize);\n        });\n        \n        function resizeColumn(e) {\n          const diffX = e.pageX - startX;\n          col.style.width = (startWidth + diffX) + 'px';\n        }\n        \n        function stopResize() {\n          document.removeEventListener('mousemove', resizeColumn);\n          document.removeEventListener('mouseup', stopResize);\n        }\n      });\n    }\n  </script>\n</body>\n</html>\n    ");
-      _fs["default"].writeFileSync(this.outputFilePath, htmlContent, 'utf8');
-      console.log("HTML report successfully written to ".concat(this.outputFilePath));
-    }
-  }, {
-    key: "calculateSummaryStats",
-    value: function calculateSummaryStats() {
-      var total = this.testResults.length;
-      var passed = this.testResults.filter(function (test) {
-        return test.status === 'PASSED';
-      }).length;
-      var failed = this.testResults.filter(function (test) {
-        return test.status === 'FAILED';
-      }).length;
-      return {
-        total: total,
-        passed: passed,
-        failed: failed
-      };
-    }
-  }, {
-    key: "embedScreenshot",
-    value: function embedScreenshot(screenshotPath) {
-      try {
-        if (_fs["default"].existsSync(screenshotPath)) {
-          var ext = _path["default"].extname(screenshotPath).toLowerCase();
-          var mimeType = 'image/png';
-          if (ext === '.jpg' || ext === '.jpeg') {
-            mimeType = 'image/jpeg';
-          } else if (ext === '.gif') {
-            mimeType = 'image/gif';
-          }
-          var imageData = _fs["default"].readFileSync(screenshotPath);
-          var base64Image = imageData.toString('base64');
-          return "data:".concat(mimeType, ";base64,").concat(base64Image);
         }
-        return null;
-      } catch (e) {
-        return null;
+      });
+    }
+
+    // Build the accordion HTML for historical execution details.
+    let historicalAccordionHTML = '';
+    if (Object.keys(historicalBySuite).length > 0) {
+      historicalAccordionHTML += '<div class="historical-accordion">';
+      Object.keys(historicalBySuite).forEach((suite) => {
+        // For each suite, check the latest record for new/resolved issues
+        let latestRecord = historicalBySuite[suite][historicalBySuite[suite].length - 1];
+        let redDot = latestRecord.newIssues && latestRecord.newIssues.length > 0 ? '<span class="dot red-dot" title="New Issues"></span>' : '';
+        let greenDot = latestRecord.resolvedIssues && latestRecord.resolvedIssues.length > 0 ? '<span class="dot green-dot" title="Resolved Issues"></span>' : '';
+        historicalAccordionHTML += `<div class="suite-row" onclick="toggleSuiteDetails(this)">
+            <span>${this.escapeHtml(suite)} ${redDot}${greenDot}</span>
+            <span class="toggle-icon">+</span>
+          </div>`;
+        historicalAccordionHTML += '<div class="suite-details">';
+        historicalAccordionHTML += '<div class="scrollable-table"><table><thead><tr><th>Timestamp</th><th>Total Tests</th><th>Passed</th><th>Failed</th><th>Pass Rate (%)</th><th>Fail Rate (%)</th><th>New Issues</th><th>Resolved Issues</th></tr></thead><tbody>';
+        historicalBySuite[suite].forEach(record => {
+          let newIssuesHTML = 'None';
+          if (record.newIssues && record.newIssues.length > 0) {
+            newIssuesHTML = '<ul>' + record.newIssues.map(t => `<li>${this.escapeHtml(t)}</li>`).join('') + '</ul>';
+          }
+          let resolvedIssuesHTML = 'None';
+          if (record.resolvedIssues && record.resolvedIssues.length > 0) {
+            resolvedIssuesHTML = '<ul>' + record.resolvedIssues.map(t => `<li>${this.escapeHtml(t)}</li>`).join('') + '</ul>';
+          }
+          historicalAccordionHTML += `<tr>
+              <td>${record.timestamp}</td>
+              <td>${record.totalTests}</td>
+              <td>${record.passed}</td>
+              <td>${record.failed}</td>
+              <td>${record.passRate}</td>
+              <td>${record.failRate}</td>
+              <td>${newIssuesHTML}</td>
+              <td>${resolvedIssuesHTML}</td>
+          </tr>`;
+        });
+        historicalAccordionHTML += '</tbody></table></div></div>';
+      });
+      historicalAccordionHTML += '</div>';
+    }
+
+    // Build the tables container.
+    // If historical data exists and produced suite data, include the Historical Execution section;
+    // otherwise, only show the Unique Errors.
+    let tablesContainerHTML = '';
+    if (historyData && historyData.length > 0 && Object.keys(historicalBySuite).length > 0) {
+      tablesContainerHTML = `
+      <div class="tables-container">
+        <div class="unique-errors">
+          <h2>Unique Errors Overview</h2>
+          <table id="uniqueErrorsTable">
+            <thead>
+              <tr>
+                <th>SI NO</th>
+                <th>Error Message</th>
+                <th>Occurrence</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${uniqueErrorsRows}
+            </tbody>
+          </table>
+        </div>
+        <div class="historical-accordion-container">
+          <h2>Historical Execution by Suite</h2>
+          <p class="dot-legend"><span class="dot red-dot"></span> 🔴 Indicates the suite has New Issues, <span class="dot green-dot"></span> 🟢 Indicates the suite has Resolved Issues</p>
+          <button class="collapse-all-btn" onclick="collapseAllSuites()">Collapse All</button>
+          ${historicalAccordionHTML}
+        </div>
+      </div>
+    `;
+    } else {
+      tablesContainerHTML = `
+      <div class="tables-container">
+        <div class="unique-errors">
+          <h2>Unique Errors Overview</h2>
+          <table id="uniqueErrorsTable">
+            <thead>
+              <tr>
+                <th>SI NO</th>
+                <th>Error Message</th>
+                <th>Occurrence</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${uniqueErrorsRows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+    }
+
+    // Include a chart container for history trends if historical data is provided.
+    const historyChartHTML = (historyData && historyData.length > 0)
+      ? `<div class="charts-row" id="historyChartRow">
+           <div class="chart-container">
+             <canvas id="historyChart"></canvas>
+             <button class="expand-btn" onclick="openChartModal('history')">Expand History Chart</button>
+           </div>
+         </div>`
+      : '';
+
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Execution Report</title>
+  <style>
+    /* Modernized Global Styles */
+    :root {
+      --background-color: #f9f9fb;
+      --header-bg: linear-gradient(135deg, #7a3d07, #48146f);
+      --header-text: #f1f1f7;
+      --nav-bg: #2a0e3a;
+      --nav-btn-color: #f1f1f7;
+      --nav-btn-hover: #d78b2f;
+      --card-bg: #ffffff;
+      --card-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      --card-hover-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      --text-color: #2c2c2c;
+      --subtext-color: #636363;
+      --button-bg: #3d1a59;
+      --button-bg-hover: #d78b2f;
+      --table-border: #e0e0e0;
+      --table-header-bg: #420c5a;
+      --table-text: #1a001f;
+      --table-row-hover: #f5f5f5;
+      --filter-menu-border: #ddd;
+      --filter-menu-bg: #ffffff;
+      --primary-font: 'Roboto', sans-serif;
+      --border-radius: 8px;
+    }
+    body {
+      font-family: var(--primary-font);
+      margin: 0;
+      padding: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      transition: background-color 0.3s;
+    }
+    .header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 30px;
+      text-align: center;
+    }
+    /* New header details styling */
+    .header-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 0.9em;
+      margin-top: 15px;
+    }
+    .header-details .detail-item {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px 15px;
+      border-radius: var(--border-radius);
+    }
+    .header-details .detail-item .label {
+      font-weight: bold;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--nav-bg);
+    }
+    .nav button {
+      background: none;
+      border: none;
+      color: var(--nav-btn-color);
+      padding: 15px 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s, border-bottom 0.3s;
+    }
+    .nav button:hover,
+    .nav button.active {
+      background-color: var(--nav-btn-hover);
+      border-bottom: 3px solid var(--button-bg);
+    }
+    .container {
+      padding: 30px;
+    }
+    .tabcontent {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Modern Dashboard Styles */
+    #Dashboard {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 30px;
+    }
+    #Dashboard .cards-group {
+      margin-bottom: 30px;
+    }
+    #Dashboard .cards-group h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: var(--text-color);
+    }
+    #Dashboard .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #Dashboard .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      flex: 1 1 200px;
+      max-width: 250px;
+    }
+    #Dashboard .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-hover-shadow);
+    }
+    #Dashboard .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1em;
+      color: var(--subtext-color);
+    }
+    #Dashboard .card p {
+      margin: 0;
+      font-size: 2em;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+    /* Modern Charts Row */
+    .charts-row {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    .chart-container {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--card-shadow);
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .chart-container canvas {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+    }
+    .expand-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border: none;
+      background-color: var(--button-bg);
+      color: var(--header-text);
+      border-radius: var(--border-radius);
+      transition: background 0.3s;
+    }
+    .expand-btn:hover {
+      background-color: var(--button-bg-hover);
+    }
+    /* Modern Tables Container */
+    .tables-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .tables-container > div {
+      flex: 1 1 45%;
+      box-sizing: border-box;
+    }
+    .tables-container table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+    .tables-container th, .tables-container td {
+      border: 1px solid var(--table-border);
+      padding: 10px;
+      text-align: center;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+    /* New CSS for resizable columns */
+    #detailsTable th {
+      position: relative;
+    }
+    .resizer {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 5px;
+      cursor: col-resize;
+      user-select: none;
+      height: 100%;
+    }
+    .tables-container th {
+      background-color: var(--table-header-bg);
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+    /* Modern Historical Accordion */
+    .historical-accordion-container {
+      overflow: hidden;
+    }
+    .historical-accordion {
+      width: 100%;
+    }
+    .historical-accordion .suite-row {
+      background: #f7f7f9;
+      cursor: pointer;
+      padding: 12px 20px;
+      border-bottom: 1px solid #eaeaea;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: var(--border-radius);
+      margin-bottom: 8px;
+      transition: background 0.2s;
+    }
+    .historical-accordion .suite-row:hover {
+      background: #ececec;
+    }
+    .historical-accordion .suite-details {
+      display: none;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #eaeaea;
+      border-radius: var(--border-radius);
+      margin-bottom: 20px;
+    }
+    .historical-accordion .toggle-icon {
+      font-size: 1.2em;
+    }
+    .historical-accordion .dot {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    .historical-accordion .red-dot {
+      background-color: #e74c3c;
+    }
+    .historical-accordion .green-dot {
+      background-color: #27ae60;
+    }
+    .dot-legend {
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+    .scrollable-table {
+      max-height: 300px;
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    .scrollable-table th {
+      position: sticky;
+      top: 0;
+      background-color: var(--table-header-bg);
+      z-index: 2;
+    }
+    .collapse-all-btn {
+      margin-bottom: 15px;
+      padding: 8px 16px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border: none;
+      background-color: var(--button-bg);
+      color: var(--header-text);
+      border-radius: var(--border-radius);
+      transition: background 0.3s;
+    }
+    .collapse-all-btn:hover {
+      background-color: var(--button-bg-hover);
+    }
+    /* Modern Test Details Styles */
+    #TestDetails {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      margin-top: 30px;
+    }
+    #TestDetails table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.95em;
+      table-layout: auto;
+    }
+    #TestDetails th, #TestDetails td {
+      border: 1px solid var(--table-border);
+      padding: 12px;
+      text-align: left;
+      color: var(--table-text);
+      word-wrap: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+    /* Updated Table Header for Timestamp (GMT) */
+    #TestDetails th:first-child {
+      background-color: var(--table-header-bg);
+      font-weight: 600;
+    }
+    #TestDetails th {
+      background-color: var(--table-header-bg);
+      color: #fff;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid var(--table-border);
+    }
+    #TestDetails td.passed {
+      background-color: #d4edda !important;
+      color: #155724 !important;
+    }
+    #TestDetails td.failed {
+      background-color: #f8d7da !important;
+      color: #721c24 !important;
+    }
+    #TestDetails tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+    .filter-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .filter-group input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      flex: 1;
+      font-size: 1em;
+    }
+    .filter-group button {
+      padding: 12px 20px;
+      border: none;
+      background-color: var(--button-bg);
+      color: var(--header-text);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+    .filter-group button:hover {
+      background-color: var(--button-bg-hover);
+    }
+    /* Filter Menu Styles remain similar */
+    .filter-icon {
+      margin-left: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: #555;
+    }
+    .filter-menu {
+      position: absolute;
+      background: var(--filter-menu-bg);
+      border: 1px solid var(--filter-menu-border);
+      padding: 12px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .filter-menu label {
+      display: block;
+      margin: 6px 0;
+    }
+    .filter-menu button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      background-color: var(--button-bg);
+      color: var(--header-text);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+    }
+    .thumbnail {
+      max-width: 100px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .thumbnail:hover {
+      opacity: 0.8;
+    }
+    /* Modal Styles */
+    .modal, .chart-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .chart-modal-content {
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90vmin;
+      height: 90vmin;
+      position: relative;
+    }
+    .close, .chart-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: var(--header-text);
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .error-cell {
+      max-width: 200px;
+      overflow-y: auto;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    .error-message {
+      cursor: pointer;
+      color: #b0392e;
+      text-decoration: underline;
+    }
+    .stack-trace {
+      background-color: #f7f7f9;
+      border: 1px solid #ccc;
+      padding: 8px;
+      margin-top: 6px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+    .suite-cell {
+      text-align: center;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    .error-block {
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed #ccc;
+    }
+    /* Pagination Styles */
+    .pagination {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .pagination button {
+      background-color: var(--button-bg);
+      color: var(--header-text);
+      border: none;
+      padding: 10px 14px;
+      margin: 0 4px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .pagination button:hover {
+      background-color: var(--button-bg-hover);
+    }
+    .pagination button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .pagination .page-number {
+      background-color: #e0e0e0;
+      color: #555;
+      font-size: 0.9em;
+      padding: 6px 8px;
+      margin: 0 2px;
+      border-radius: 4px;
+      min-width: 24px;
+    }
+    .pagination .page-number:hover {
+      background-color: #d0d0d0;
+    }
+    .pagination .page-number:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    /* Common Table Header Style Override */
+    table th {
+      background-color: var(--table-header-bg) !important;
+      color: #fff !important;
+      padding: 12px !important;
+      text-align: center !important;
+      border: 1px solid var(--table-border) !important;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Test Execution Report</h1>
+    <div class="header-details">
+      <div class="detail-item"><span class="label">Browser Name:</span> ${metadata.browserName}</div>
+      <div class="detail-item"><span class="label">Start:</span> ${startDateStr}</div>
+      <div class="detail-item"><span class="label">End:</span> ${endDateStr}</div>
+      <div class="detail-item"><span class="label">Duration (mins):</span> ${metadata.totalTimeInMinutes}</div>
+    </div>
+  </div>
+  <div class="nav">
+    <button class="tablinks" onclick="openTab(event, 'Dashboard')">Dashboard</button>
+    <button class="tablinks" onclick="openTab(event, 'TestDetails')">Test Details</button>
+  </div>
+  <div class="container">
+    <div id="Dashboard" class="tabcontent" style="display: block;">
+      <!-- Overall Test Information Group -->
+      <div class="cards-group">
+        <h2>Overall Test Information</h2>
+        <div class="cards">
+          <div class="card" onclick="showAllTestDetails()" title="View All Tests">
+            <h3>Total Tests</h3>
+            <p>${summary.total}</p>
+          </div>
+          <div class="card" onclick="filterByStatus('PASSED')" title="View Passed Tests">
+            <h3>Passed</h3>
+            <p>${summary.passed}</p>
+          </div>
+          <div class="card" onclick="filterByStatus('FAILED')" title="View Failed Tests">
+            <h3>Failed</h3>
+            <p>${summary.failed}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Suite Information Group -->
+      <div class="cards-group">
+        <h2>Suite Information</h2>
+        <div class="cards">
+          <div class="card" title="Total Suites">
+            <h3>Total Suites</h3>
+            <p>${totalSuiteCount}</p>
+          </div>
+          <div class="card" onclick="filterByPassedSuites()" title="View Passed Suites">
+            <h3>Passed Suites</h3>
+            <p>${passedSuiteCount}</p>
+          </div>
+          <div class="card" onclick="filterByFailedSuites()" title="View Failed Suites">
+            <h3>Failed Suites</h3>
+            <p>${failedSuiteCount}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <div class="chart-container">
+          <canvas id="statusChart"></canvas>
+          <button class="expand-btn" onclick="openChartModal('overall')">Expand Chart</button>
+        </div>
+        <div class="chart-container">
+          <canvas id="suiteChart"></canvas>
+          <button class="expand-btn" onclick="openChartModal('suite')">Expand Chart</button>
+        </div>
+      </div>
+      <!-- History Chart (if available) -->
+      ${historyChartHTML}
+      <!-- Tables Container: Unique Errors and Historical Execution Accordion -->
+      ${tablesContainerHTML}
+    </div>
+    <div id="TestDetails" class="tabcontent">
+      <div class="filter-group">
+        <input type="text" id="filterSuiteDetails" placeholder="Search Suite Name..." onkeyup="applyFilters()">
+        <button onclick="clearFilters()">Clear Filters</button>
+      </div>
+      <button onclick="exportTableToExcel('detailsTable', 'TestDetailsReport')" style="margin-bottom: 15px;">Export to Excel</button>
+      <table id="detailsTable">
+        <thead>
+          <tr>
+            <!-- Updated header for timestamp with (GMT) -->
+            <th>Timestamp (GMT)</th>
+            <th>Suite Name <span class="filter-icon" onclick="openFilterMenu(event, 1)">&#x1F50D;</span></th>
+            <th>Test Name <span class="filter-icon" onclick="openFilterMenu(event, 2)">&#x1F50D;</span></th>
+            <th>Status <span class="filter-icon" onclick="openFilterMenu(event, 3)">&#x1F50D;</span></th>
+            <th>Error <span class="filter-icon" onclick="openFilterMenu(event, 4)">&#x1F50D;</span></th>
+            <th>Screenshot</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Dynamic rows will be rendered here -->
+        </tbody>
+      </table>
+      <div id="paginationControls"></div>
+    </div>
+  </div>
+  
+  <!-- Image Modal -->
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+  
+  <!-- Chart Modal -->
+  <div id="chartModal" class="chart-modal">
+    <div class="chart-modal-content">
+      <span class="chart-close" onclick="closeChartModal()">&times;</span>
+      <canvas id="chartModalCanvas"></canvas>
+    </div>
+  </div>
+  
+  <script>
+    // Expose processed data to client-side.
+    window.allTestResults = ${JSON.stringify(processedTestResults)};
+    window.filteredResults = window.allTestResults.slice();
+    window.currentPage = 1;
+    window.suiteStats = ${JSON.stringify(suiteStats)};
+    window.historyData = ${JSON.stringify(historyData)};
+    
+    let activeFilters = {};
+    let currentFilterMenu = null;
+    let statusChartInstance, suiteChartInstance, modalChartInstance, historyChartInstance;
+    const PAGE_SIZE = 50;
+    
+    function navigateToError(errorMsg) {
+      activeFilters[4] = [errorMsg];
+      applyFilters();
+      openTab(null, 'TestDetails');
+    }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('#uniqueErrorsTable .error-row').forEach(function(row) {
+        row.addEventListener('click', function() {
+          var errorMsg = decodeURIComponent(row.getAttribute('data-error'));
+          navigateToError(errorMsg);
+        });
+      });
+      renderTable(1);
+      openTab(null, 'Dashboard');
+
+      // Initialize column resizing for the Test Details table.
+      const table = document.getElementById('detailsTable');
+      if (table) {
+        makeColumnsResizable(table);
+      }
+    });
+    
+    function toggleSuiteDetails(element) {
+      var details = element.nextElementSibling;
+      var icon = element.querySelector('.toggle-icon');
+      if (details.style.display === 'none' || details.style.display === '') {
+        details.style.display = 'block';
+        icon.textContent = '-';
+      } else {
+        details.style.display = 'none';
+        icon.textContent = '+';
       }
     }
-  }]);
-}();
+    
+    function collapseAllSuites() {
+      var suiteDetailsElements = document.querySelectorAll('.historical-accordion .suite-details');
+      suiteDetailsElements.forEach(function(details) {
+        details.style.display = 'none';
+        var suiteRow = details.previousElementSibling;
+        if (suiteRow) {
+          var icon = suiteRow.querySelector('.toggle-icon');
+          if (icon) icon.textContent = '+';
+        }
+      });
+    }
+    
+    function renderTable(page) {
+      page = page || 1;
+      window.currentPage = page;
+      const start = (page - 1) * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
+      const currentData = window.filteredResults.slice(start, end);
+      const tbody = document.getElementById('tableBody');
+      let html = '';
+      currentData.forEach(test => {
+        let screenshotHTML = 'No Screenshot';
+        const dataUrl = embedScreenshot(test.screenshot);
+        if (dataUrl) {
+          screenshotHTML = \`<img src="\${dataUrl}" class="thumbnail" alt="Screenshot for \${escapeHtml(test.testName)}" onclick="openModal(this.src)">\`;
+        }
+        html += \`<tr data-suite="\${escapeHtml(test.suiteName || '')}" data-test-name="\${escapeHtml(test.testName || '')}" data-status="\${test.status || ''}" data-error="\${escapeHtml(test.errors ? test.errors.map(e => e.message).join(' | ') : '')}">
+          <td>\${test.timestamp || ''}</td>
+          <td class="suite-cell">\${escapeHtml(test.suiteName || '')}</td>
+          <td>\${escapeHtml(test.testName || '')}</td>
+          <td class="\${test.status === 'PASSED' ? 'passed' : test.status === 'FAILED' ? 'failed' : ''}">\${test.status || ''}</td>
+          <td class="error-cell">
+            \${test.errors ? test.errors.map((error, idx) => \`
+              <div class="error-block">
+                <div class="error-message" onclick="toggleStack(this)">Error \${idx + 1}: \${escapeHtml(error.message)}</div>
+                <div class="stack-trace" style="display: none;">\${escapeHtml(error.stack || 'No stack trace')}</div>
+              </div>\`).join('') : ''}
+          </td>
+          <td>\${screenshotHTML}</td>
+        </tr>\`;
+      });
+      tbody.innerHTML = html;
+      mergeSuiteCellsAdvanced();
+      renderPaginationControls();
+    }
+    
+    function renderPaginationControls() {
+      const totalPages = Math.ceil(window.filteredResults.length / PAGE_SIZE);
+      const container = document.getElementById('paginationControls');
+      let html = '';
+      if (totalPages > 1) {
+        html += \`<button onclick="changePage(1)" \${window.currentPage === 1 ? 'disabled' : ''}>First</button>\`;
+        html += \` <button onclick="changePage(\${Math.max(window.currentPage - 1, 1)})" \${window.currentPage === 1 ? 'disabled' : ''}>Previous</button> \`;
+        for (let i = 1; i <= totalPages; i++) {
+          html += \`<button class="page-number" onclick="changePage(\${i})" \${window.currentPage === i ? 'disabled' : ''}>\${i}</button>\`;
+        }
+        html += \` <button onclick="changePage(\${Math.min(window.currentPage + 1, totalPages)})" \${window.currentPage === totalPages ? 'disabled' : ''}>Next</button> \`;
+        html += \` <button onclick="changePage(\${totalPages})" \${window.currentPage === totalPages ? 'disabled' : ''}>Last</button>\`;
+      }
+      container.innerHTML = '<div class="pagination">' + html + '</div>';
+    }
+    
+    function changePage(page) {
+      renderTable(page);
+    }
+    
+    function applyFilters() {
+      const suiteFilterText = document.getElementById("filterSuiteDetails").value.toUpperCase();
+      window.filteredResults = window.allTestResults.filter(test => {
+        const suiteValue = (test.suiteName || "").toUpperCase();
+        let textMatch = suiteValue.indexOf(suiteFilterText) > -1;
+        let columnMatch = true;
+        if (activeFilters[1] && activeFilters[1].length > 0 && !activeFilters[1].includes(test.suiteName || '')) columnMatch = false;
+        if (activeFilters[2] && activeFilters[2].length > 0 && !activeFilters[2].includes(test.testName || '')) columnMatch = false;
+        if (activeFilters[3] && activeFilters[3].length > 0 && !activeFilters[3].includes(test.status || '')) columnMatch = false;
+        if (activeFilters[4] && activeFilters[4].length > 0) {
+          const testErrorMessages = (test.errors && test.errors.length > 0) ? test.errors.map(e => e.message) : ["No Error"];
+          if (!activeFilters[4].some(filterMsg => testErrorMessages.includes(filterMsg))) columnMatch = false;
+        }
+        return textMatch && columnMatch;
+      });
+      renderTable(1);
+    }
+    
+    function clearFilters() {
+      document.getElementById("filterSuiteDetails").value = "";
+      activeFilters = {};
+      window.filteredResults = window.allTestResults.slice();
+      renderTable(1);
+    }
+    
+    function openFilterMenu(event, colIndex) {
+      event.stopPropagation();
+      if (currentFilterMenu) {
+        currentFilterMenu.remove();
+        currentFilterMenu = null;
+      }
+      const menu = document.createElement('div');
+      menu.className = 'filter-menu';
+      
+      const searchInput = document.createElement('input');
+      searchInput.type = 'text';
+      searchInput.placeholder = 'Search...';
+      searchInput.style.width = '100%';
+      searchInput.style.marginBottom = '10px';
+      menu.appendChild(searchInput);
+      
+      const controlsDiv = document.createElement('div');
+      controlsDiv.style.marginBottom = '10px';
+      
+      const uncheckAllBtn = document.createElement('button');
+      uncheckAllBtn.textContent = 'Uncheck All';
+      uncheckAllBtn.onclick = function(e) {
+        e.stopPropagation();
+        const checkboxes = optionsContainer.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(chk => chk.checked = false);
+      };
+      controlsDiv.appendChild(uncheckAllBtn);
+      
+      const applyBtn = document.createElement('button');
+      applyBtn.textContent = 'Apply';
+      applyBtn.style.marginLeft = '5px';
+      applyBtn.onclick = function(e) {
+        e.stopPropagation();
+        applyFilterMenu(colIndex, menu);
+      };
+      controlsDiv.appendChild(applyBtn);
+      
+      const clearBtn = document.createElement('button');
+      clearBtn.textContent = 'Clear';
+      clearBtn.style.marginLeft = '5px';
+      clearBtn.onclick = function(e) {
+        e.stopPropagation();
+        clearFilterMenu(colIndex, menu);
+      };
+      controlsDiv.appendChild(clearBtn);
+      
+      menu.appendChild(controlsDiv);
+      
+      let dataset = window.allTestResults.filter(test => {
+        for (let key in activeFilters) {
+          if (Number(key) === colIndex) continue;
+          if (activeFilters[key] && activeFilters[key].length > 0) {
+            let value = "";
+            if (Number(key) === 1) value = test.suiteName || "";
+            else if (Number(key) === 2) value = test.testName || "";
+            else if (Number(key) === 3) value = test.status || "";
+            else if (Number(key) === 4) {
+              if (test.errors && test.errors.length > 0) {
+                value = test.errors.map(e => e.message).join(' | ');
+              } else {
+                value = "No Error";
+              }
+            }
+            if (!activeFilters[key].includes(value)) return false;
+          }
+        }
+        return true;
+      });
+      
+      let uniqueValues = new Set();
+      dataset.forEach(test => {
+        if (colIndex === 1) {
+          uniqueValues.add(test.suiteName || "");
+        } else if (colIndex === 2) {
+          uniqueValues.add(test.testName || "");
+        } else if (colIndex === 3) {
+          uniqueValues.add(test.status || "");
+        } else if (colIndex === 4) {
+          if (test.errors && test.errors.length > 0) {
+            test.errors.forEach(e => uniqueValues.add(e.message));
+          } else {
+            uniqueValues.add("No Error");
+          }
+        }
+      });
+      
+      const optionsContainer = document.createElement('div');
+      let valuesArray = Array.from(uniqueValues).sort();
+      valuesArray.forEach(value => {
+        const label = document.createElement('label');
+        label.className = 'filter-option';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = value;
+        if (activeFilters[colIndex]) {
+          checkbox.checked = activeFilters[colIndex].includes(value);
+        } else {
+          checkbox.checked = true;
+        }
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(' ' + value));
+        optionsContainer.appendChild(label);
+      });
+      menu.appendChild(optionsContainer);
+      
+      searchInput.addEventListener('keyup', function() {
+        const filterValue = searchInput.value.toLowerCase();
+        const optionLabels = optionsContainer.querySelectorAll('.filter-option');
+        optionLabels.forEach(label => {
+          label.style.display = label.textContent.toLowerCase().includes(filterValue) ? '' : 'none';
+        });
+      });
+      
+      document.body.appendChild(menu);
+      currentFilterMenu = menu;
+      const rect = event.target.getBoundingClientRect();
+      menu.style.top = rect.bottom + window.scrollY + 'px';
+      menu.style.left = rect.left + window.scrollX + 'px';
+      menu.onclick = function(e) {
+        e.stopPropagation();
+      };
+      document.addEventListener('click', closeCurrentFilterMenu);
+    }
+    
+    function applyFilterMenu(colIndex, menu) {
+      const checkboxes = menu.querySelectorAll('input[type="checkbox"]');
+      const selectedValues = [];
+      checkboxes.forEach(chk => {
+        if (chk.checked) selectedValues.push(chk.value);
+      });
+      activeFilters[colIndex] = selectedValues;
+      applyFilters();
+      menu.remove();
+      currentFilterMenu = null;
+      document.removeEventListener('click', closeCurrentFilterMenu);
+    }
+    
+    function clearFilterMenu(colIndex, menu) {
+      activeFilters[colIndex] = [];
+      applyFilters();
+      menu.remove();
+      currentFilterMenu = null;
+      document.removeEventListener('click', closeCurrentFilterMenu);
+    }
+    
+    function closeCurrentFilterMenu() {
+      if (currentFilterMenu) {
+        currentFilterMenu.remove();
+        currentFilterMenu = null;
+        document.removeEventListener('click', closeCurrentFilterMenu);
+      }
+    }
+    
+    function mergeSuiteCellsAdvanced() {
+      const tbody = document.getElementById("detailsTable").tBodies[0];
+      const allRows = Array.from(tbody.rows).filter(row => row.style.display !== "none");
+      let i = 0;
+      while (i < allRows.length) {
+        const currentSuite = allRows[i].dataset.suite || "";
+        let count = 1;
+        let j = i + 1;
+        while (j < allRows.length && (allRows[j].dataset.suite || "") === currentSuite) {
+          count++;
+          j++;
+        }
+        if (count > 1) {
+          const firstRow = allRows[i];
+          const suiteCell = firstRow.querySelector('.suite-cell');
+          if (suiteCell) suiteCell.rowSpan = count;
+          for (let k = i + 1; k < j; k++) {
+            const cellToRemove = allRows[k].querySelector('.suite-cell');
+            if (cellToRemove) cellToRemove.parentNode.removeChild(cellToRemove);
+          }
+        }
+        i = j;
+      }
+    }
+    
+    function embedScreenshot(screenshotPath) {
+      if (screenshotPath && screenshotPath.startsWith('data:')) return screenshotPath;
+      return null;
+    }
+    
+    // Updated Excel export function using concatenated string for style block
+    function exportTableToExcel(tableID, filename = '') {
+      var dataType = 'application/vnd.ms-excel';
+      var style = '<style>' +
+        'table { border-collapse: collapse; width: 100%; font-family: Roboto, sans-serif; }' +
+        'table, th, td { border: 1px solid #e0e0e0; }' +
+        'th, td { padding: 12px; text-align: center; word-wrap: break-word; white-space: normal; }' +
+        'th { background-color: #420c5a; color: #fff; font-weight: bold; }' +
+        'td.passed { background-color: #d4edda; color: #155724; }' +
+        'td.failed { background-color: #f8d7da; color: #721c24; }' +
+        '</style>';
+      
+      let htmlTable = '<table><thead><tr><th>Timestamp (GMT)</th><th>Suite Name</th><th>Test Name</th><th>Status</th><th>Error</th></tr></thead><tbody>';
+      const results = window.filteredResults;
+      for (let i = 0; i < results.length; i++) {
+        const test = results[i];
+        let suiteCell = '';
+        if (i === 0 || (results[i].suiteName !== results[i - 1].suiteName)) {
+          let rowspan = 1;
+          for (let j = i + 1; j < results.length; j++) {
+            if (results[j].suiteName === test.suiteName) {
+              rowspan++;
+            } else {
+              break;
+            }
+          }
+          suiteCell = '<td rowspan="' + rowspan + '">' + (test.suiteName || '') + '</td>';
+        }
+        let statusCell = '';
+        if (test.status === 'PASSED') {
+          statusCell = '<td class="passed">' + (test.status || '') + '</td>';
+        } else if (test.status === 'FAILED') {
+          statusCell = '<td class="failed">' + (test.status || '') + '</td>';
+        } else {
+          statusCell = '<td>' + (test.status || '') + '</td>';
+        }
+        
+        htmlTable += '<tr>';
+        htmlTable += '<td>' + (test.timestamp || '') + '</td>';
+        htmlTable += suiteCell;
+        htmlTable += '<td>' + (test.testName || '') + '</td>';
+        htmlTable += statusCell;
+        htmlTable += '<td>' + (test.errors ? test.errors.map(e => e.message).join('; ') : '') + '</td>';
+        htmlTable += '</tr>';
+      }
+      htmlTable += '</tbody></table>';
+      
+      var htmlContent = '<html><head><meta charset="UTF-8">' + style + '</head><body>' + htmlTable + '</body></html>';
+      
+      var downloadLink = document.createElement("a");
+      document.body.appendChild(downloadLink);
+      filename = filename ? filename + '.xls' : 'report.xls';
+      if (navigator.msSaveOrOpenBlob) {
+        var blob = new Blob(['\ufeff', htmlContent], { type: dataType });
+        navigator.msSaveOrOpenBlob(blob, filename);
+      } else {
+        downloadLink.href = 'data:' + dataType + ', ' + encodeURIComponent(htmlContent);
+        downloadLink.download = filename;
+        downloadLink.click();
+      }
+      document.body.removeChild(downloadLink);
+    }
+          
+    function openModal(src) {
+      const modal = document.getElementById("myModal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "block";
+      modalImg.src = src;
+    }
+    
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+    
+    function toggleStack(element) {
+      var stackTraceDiv = element.nextElementSibling;
+      if (stackTraceDiv.style.display === "none") {
+        stackTraceDiv.style.display = "block";
+      } else {
+        stackTraceDiv.style.display = "none";
+      }
+    }
+    
+    function openChartModal(type) {
+      document.getElementById("chartModal").style.display = "block";
+      const modalCanvas = document.getElementById("chartModalCanvas");
+      const ctx = modalCanvas.getContext('2d');
+      if (modalChartInstance) {
+        modalChartInstance.destroy();
+      }
+      if (type === 'overall') {
+        modalChartInstance = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Passed', 'Failed'],
+            datasets: [{
+              data: [${summary.passed}, ${summary.failed}],
+              backgroundColor: ['#28a745', '#dc3545']
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              datalabels: {
+                color: '#fff',
+                font: { weight: 'bold', size: 16 },
+                formatter: function(value, context) {
+                  let sum = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                  let percentage = sum ? Math.round((value / sum) * 100) + '%' : '0%';
+                  return percentage;
+                }
+              },
+              title: { display: true, text: 'Overall Execution Status' },
+              legend: { position: 'bottom' }
+            }
+          },
+          plugins: [ChartDataLabels]
+        });
+      } else if (type === 'suite') {
+        const suiteNames = Object.keys(${JSON.stringify(suiteStats)});
+        const passPercentages = suiteNames.map(suite => {
+          const stats = ${JSON.stringify(suiteStats)}[suite];
+          return stats.total > 0 ? parseFloat((stats.passed / stats.total * 100).toFixed(2)) : 0;
+        });
+        const failPercentages = suiteNames.map(suite => {
+          const stats = ${JSON.stringify(suiteStats)}[suite];
+          return stats.total > 0 ? parseFloat((stats.failed / stats.total * 100).toFixed(2)) : 0;
+        });
+        modalChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: suiteNames.map(name => name.length > 10 ? name.slice(0,10) + '...' : name),
+            datasets: [
+              { label: 'Passed %', data: passPercentages, backgroundColor: '#28a745' },
+              { label: 'Failed %', data: failPercentages, backgroundColor: '#dc3545' }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              title: { display: true, text: 'Suite Level Pass/Fail Percentage' },
+              legend: { position: 'bottom' },
+              tooltip: {
+                callbacks: {
+                  title: function(context) {
+                    return suiteNames[context[0].dataIndex];
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { stacked: true, ticks: { font: { size: 12 } } },
+              y: { stacked: true, beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } }
+            }
+          }
+        });
+      } else if (type === 'history') {
+        if (!window.historyData || window.historyData.length === 0) return;
+        const labels = window.historyData.map(record => record.timestamp);
+        const totalTests = window.historyData.map(record => record.totalTests);
+        const passed = window.historyData.map(record => record.passed);
+        const failed = window.historyData.map(record => record.failed);
+        modalChartInstance = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              { label: 'Total Tests', data: totalTests, borderColor: '#007bff', fill: false },
+              { label: 'Passed', data: passed, borderColor: '#28a745', fill: false },
+              { label: 'Failed', data: failed, borderColor: '#dc3545', fill: false }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              title: { display: true, text: 'Historical Test Execution Trends' },
+              legend: { position: 'bottom' }
+            }
+          }
+        });
+      }
+    }
+    
+    function closeChartModal() {
+      document.getElementById("chartModal").style.display = "none";
+    }
+    
+    function drawChart() {
+      const canvas = document.getElementById('statusChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (statusChartInstance) {
+        statusChartInstance.destroy();
+      }
+      statusChartInstance = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Passed', 'Failed'],
+          datasets: [{
+            data: [${summary.passed}, ${summary.failed}],
+            backgroundColor: ['#28a745', '#dc3545']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          aspectRatio: 1,
+          plugins: {
+            datalabels: {
+              color: '#fff',
+              font: { weight: 'bold', size: 16 },
+              formatter: function(value, context) {
+                let sum = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                let percentage = sum ? Math.round((value / sum) * 100) + '%' : '0%';
+                return percentage;
+              }
+            },
+            title: { display: true, text: 'Overall Execution Status' },
+            legend: { position: 'bottom' }
+          }
+        },
+        plugins: [ChartDataLabels]
+      });
+    }
+    
+    function drawSuiteChart() {
+      const canvas = document.getElementById('suiteChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (suiteChartInstance) {
+        suiteChartInstance.destroy();
+      }
+      
+      const MAX_SUITES_DISPLAYED = 10;
+      const suiteNamesAll = Object.keys(${JSON.stringify(suiteStats)});
+      let suiteNames = suiteNamesAll;
+      let passPercentagesAll = suiteNamesAll.map(suite => {
+        const stats = ${JSON.stringify(suiteStats)}[suite];
+        return stats.total > 0 ? parseFloat((stats.passed / stats.total * 100).toFixed(2)) : 0;
+      });
+      let failPercentagesAll = suiteNamesAll.map(suite => {
+        const stats = ${JSON.stringify(suiteStats)}[suite];
+        return stats.total > 0 ? parseFloat((stats.failed / stats.total * 100).toFixed(2)) : 0;
+      });
+      
+      if (suiteNamesAll.length > MAX_SUITES_DISPLAYED) {
+          suiteNames = suiteNamesAll.slice(0, MAX_SUITES_DISPLAYED);
+          passPercentagesAll = passPercentagesAll.slice(0, MAX_SUITES_DISPLAYED);
+          failPercentagesAll = failPercentagesAll.slice(0, MAX_SUITES_DISPLAYED);
+      }
+      
+      const maxLabelLength = 10;
+      const truncatedNames = suiteNames.map(name => name.length > maxLabelLength ? name.slice(0, maxLabelLength) + '...' : name);
+      const fontSize = suiteNames.length > 10 ? 10 : 12;
+      
+      suiteChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: truncatedNames,
+          datasets: [
+            { label: 'Passed %', data: passPercentagesAll, backgroundColor: '#28a745' },
+            { label: 'Failed %', data: failPercentagesAll, backgroundColor: '#dc3545' }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: { display: true, text: 'Suite Level Pass/Fail Percentage' },
+            legend: { position: 'bottom' },
+            tooltip: {
+              callbacks: {
+                title: function(context) {
+                  return suiteNames[context[0].dataIndex];
+                }
+              }
+            }
+          },
+          scales: {
+            x: { stacked: true, ticks: { font: { size: fontSize } } },
+            y: { stacked: true, beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } }
+          }
+        }
+      });
+    }
+    
+    function drawHistoryChart() {
+      if (!window.historyData || window.historyData.length === 0) return;
+      const canvas = document.getElementById('historyChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (historyChartInstance) {
+        historyChartInstance.destroy();
+      }
+      const labels = window.historyData.map(record => record.timestamp);
+      const totalTests = window.historyData.map(record => record.totalTests);
+      const passed = window.historyData.map(record => record.passed);
+      const failed = window.historyData.map(record => record.failed);
+      historyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            { label: 'Total Tests', data: totalTests, borderColor: '#007bff', fill: false },
+            { label: 'Passed', data: passed, borderColor: '#28a745', fill: false },
+            { label: 'Failed', data: failed, borderColor: '#dc3545', fill: false }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { display: false } }
+          },
+          plugins: {
+            title: { display: true, text: 'Historical Test Execution Trends' },
+            legend: { position: 'bottom' }
+          }
+        }
+      });
+    }
+    
+    function openTab(evt, tabName) {
+      const tabcontent = document.getElementsByClassName("tabcontent");
+      for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      const tablinks = document.getElementsByClassName("tablinks");
+      for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+      document.getElementById(tabName).style.display = "block";
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add("active");
+      }
+      if (tabName === 'Dashboard'){
+        setTimeout(() => {
+          drawChart();
+          drawSuiteChart();
+          if (window.historyData && window.historyData.length > 0) {
+            document.getElementById("historyChartRow").style.display = "flex";
+            drawHistoryChart();
+          }
+        }, 0);
+      }
+      mergeSuiteCellsAdvanced();
+    }
+    
+    function showAllTestDetails() {
+      clearFilters();
+      openTab(null, 'TestDetails');
+    }
+    
+    function filterByStatus(status) {
+      document.getElementById("filterSuiteDetails").value = "";
+      activeFilters = {};
+      window.filteredResults = window.allTestResults.filter(test => test.status === status);
+      renderTable(1);
+      openTab(null, 'TestDetails');
+    }
+    
+    function filterByErrorTests() {
+      window.filteredResults = window.allTestResults.filter(test => test.errors && test.errors.length > 0);
+      renderTable(1);
+      openTab(null, 'TestDetails');
+    }
+    
+    function filterByFailedSuites() {
+      const failedSuites = new Set();
+      window.allTestResults.forEach(test => {
+        if (test.status === 'FAILED' && test.suiteName) {
+          failedSuites.add(test.suiteName);
+        }
+      });
+      window.filteredResults = window.allTestResults.filter(test => failedSuites.has(test.suiteName));
+      renderTable(1);
+      openTab(null, 'TestDetails');
+    }
+    
+    function filterByPassedSuites() {
+      const passedSuites = Object.keys(window.suiteStats).filter(suite => window.suiteStats[suite].failed === 0);
+      window.filteredResults = window.allTestResults.filter(test => passedSuites.includes(test.suiteName));
+      renderTable(1);
+      openTab(null, 'TestDetails');
+    }
+    
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Function to add resizer handles and enable column resizing
+    function makeColumnsResizable(table) {
+      const cols = table.querySelectorAll('th');
+      cols.forEach(col => {
+        // Ensure the th has relative positioning.
+        col.style.position = 'relative';
+        // Create the resizer div.
+        const resizer = document.createElement('div');
+        resizer.classList.add('resizer');
+        col.appendChild(resizer);
+        
+        // Variables to store initial positions.
+        let startX, startWidth;
+        
+        resizer.addEventListener('mousedown', function(e) {
+          startX = e.pageX;
+          startWidth = col.offsetWidth;
+          document.addEventListener('mousemove', resizeColumn);
+          document.addEventListener('mouseup', stopResize);
+        });
+        
+        function resizeColumn(e) {
+          const diffX = e.pageX - startX;
+          col.style.width = (startWidth + diffX) + 'px';
+        }
+        
+        function stopResize() {
+          document.removeEventListener('mousemove', resizeColumn);
+          document.removeEventListener('mouseup', stopResize);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+    `;
+    fs.writeFileSync(this.outputFilePath, htmlContent, 'utf8');
+    console.log(`HTML report successfully written to ${this.outputFilePath}`);
+  }
+
+  calculateSummaryStats() {
+    const total = this.testResults.length;
+    const passed = this.testResults.filter(test => test.status === 'PASSED').length;
+    const failed = this.testResults.filter(test => test.status === 'FAILED').length;
+    return { total, passed, failed };
+  }
+
+  embedScreenshot(screenshotPath) {
+    try {
+      if (fs.existsSync(screenshotPath)) {
+        const ext = path.extname(screenshotPath).toLowerCase();
+        let mimeType = 'image/png';
+        if (ext === '.jpg' || ext === '.jpeg') {
+          mimeType = 'image/jpeg';
+        } else if (ext === '.gif') {
+          mimeType = 'image/gif';
+        }
+        const imageData = fs.readFileSync(screenshotPath);
+        const base64Image = imageData.toString('base64');
+        return `data:${mimeType};base64,${base64Image}`;
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+}
+
+module.exports = HTMLReportGenerator;

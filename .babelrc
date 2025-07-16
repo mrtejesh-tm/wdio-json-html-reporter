@@ -1,8 +1,25 @@
 {
-    "env": {
-      "cjs": {
-        "presets": [["@babel/preset-env", { "modules": "commonjs" }]]
-      }
+  "env": {
+    "cjs": {
+      "presets": [
+        ["@babel/preset-env", {
+          "targets": {
+            "node": "14"
+          },
+          "modules": "commonjs"
+        }]
+      ]
+    },
+    "esm": {
+      "presets": [
+        ["@babel/preset-env", {
+          "targets": {
+            "node": "14"
+          },
+          "modules": false
+        }]
+      ]
     }
   }
+}
   
