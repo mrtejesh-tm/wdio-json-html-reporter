@@ -1274,7 +1274,7 @@ class HTMLReportGenerator {
       }
       htmlTable += '</tbody></table>';
       
-      var htmlContent = '<html><head><meta charset="UTF-8">' + style + '</head><body>' + htmlTable + '</body></html>';
+      var htmlContent = '<html><head><meta charset="UTF-8">' + style + '</head><body>' + htmlTable + '</'+'body'+'></'+'html'+'>';
       
       var downloadLink = document.createElement("a");
       document.body.appendChild(downloadLink);
