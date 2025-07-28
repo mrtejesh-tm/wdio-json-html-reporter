@@ -182,8 +182,12 @@ class HTMLReportGenerator {
         let latestRecord = historicalBySuite[suite][historicalBySuite[suite].length - 1];
         let redDot = latestRecord.newIssues && latestRecord.newIssues.length > 0 ? '<span class="dot red-dot" title="New Issues"></span>' : '';
         let greenDot = latestRecord.resolvedIssues && latestRecord.resolvedIssues.length > 0 ? '<span class="dot green-dot" title="Resolved Issues"></span>' : '';
+
+        // Determine suite status emoji for historical data
+        const historicalSuiteStats = suiteStats[suite];
+        const historicalSuiteEmoji = historicalSuiteStats && historicalSuiteStats.failed > 0 ? '❌' : '✅';
         historicalAccordionHTML += `<div class="suite-row" onclick="toggleSuiteDetails(this)">
-            <span>${this.escapeHtml(suite)} ${redDot}${greenDot}</span>
+            <span>${historicalSuiteEmoji} ${this.escapeHtml(suite)} ${redDot}${greenDot}</span>
             <span class="toggle-icon">+</span>
           </div>`;
         historicalAccordionHTML += '<div class="suite-details">';
@@ -615,6 +619,18 @@ class HTMLReportGenerator {
       background-color: #f8d7da !important;
       color: #721c24 !important;
     }
+    .text-gray { 
+      color: #4b5563; 
+    } 
+    .text-green { 
+      color: #16a34a; 
+    } 
+    .text-red { 
+      color: #dc2626; 
+    } 
+    .text-blue { 
+      color: #3b82f6; 
+    } 
     #TestDetails tbody tr:hover {
       background-color: #f5f5f5;
     }
@@ -793,6 +809,232 @@ class HTMLReportGenerator {
       text-align: center !important;
       border: 1px solid var(--table-border) !important;
     }
+    
+    /* Enhanced Test Details UI Styles */
+    .view-mode-toggle {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+    }
+    
+    .toggle-option {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    
+    .toggle-option input[type="radio"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+    }
+    
+    .view-container {
+      margin-top: 20px;
+    }
+    
+    /* Suite Cards Container */
+    .suite-cards-container {
+      margin-top: 20px;
+    }
+    
+    .suite-card {
+      background: var(--card-bg);
+      border: 2px solid var(--table-border);
+      border-radius: var(--border-radius);
+      margin-bottom: 15px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .suite-card:hover {
+      box-shadow: var(--card-hover-shadow);
+      transform: translateY(-2px);
+    }
+    
+    .suite-card.expanded {
+      border-color: var(--button-bg);
+    }
+    
+    .suite-header {
+      padding: 15px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(255,255,255,0.1) 100%);
+      border-bottom: 1px solid var(--table-border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    .suite-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .suite-name {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: var(--text-color);
+      word-wrap: break-word;
+      line-height: 1.3;
+      margin: 0;
+    }
+    
+    .suite-stats {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.9em;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .stat-emoji {
+      font-size: 1.1em;
+    }
+    
+    .expand-icon {
+      font-size: 1.2em;
+      color: var(--subtext-color);
+      transition: transform 0.3s ease;
+    }
+    
+    .suite-card.expanded .expand-icon {
+      transform: rotate(180deg);
+    }
+    
+    .suite-tests {
+      display: none;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: var(--bg-color);
+    }
+    
+    .suite-card.expanded .suite-tests {
+      display: block;
+    }
+    
+    .suite-tests table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+    
+    .suite-tests th {
+      background-color: var(--table-header-bg);
+      color: #fff;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px solid var(--table-border);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    
+    .suite-tests td {
+      padding: 10px;
+      border-bottom: 1px solid var(--table-border);
+      vertical-align: top;
+    }
+    
+    .suite-tests tr:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+    
+    .test-status {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-align: center;
+      min-width: 70px;
+    }
+    
+    .test-status.passed {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .test-status.failed {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .test-status.skipped {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    
+    .test-screenshot {
+      text-align: center;
+    }
+    
+    .test-screenshot img {
+      max-width: 80px;
+      max-height: 60px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    
+    .test-screenshot img:hover {
+      opacity: 0.8;
+    }
+    
+    .no-tests-message {
+      text-align: center;
+      padding: 40px;
+      color: var(--subtext-color);
+      font-style: italic;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .view-mode-toggle {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .suite-info {
+        gap: 8px; /* Reduce gap for mobile */
+      }
+      
+      .suite-name {
+        font-size: 1em;
+      }
+      
+      .suite-stats {
+        gap: 15px;
+        font-size: 0.8em;
+      }
+      
+      .stat-item {
+        gap: 3px; /* Tighter spacing on mobile */
+      }
+      
+      .suite-tests th,
+      .suite-tests td {
+        padding: 8px 5px;
+        font-size: 0.9em;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
@@ -866,28 +1108,57 @@ class HTMLReportGenerator {
       ${tablesContainerHTML}
     </div>
     <div id="TestDetails" class="tabcontent">
-      <div class="filter-group">
-        <input type="text" id="filterSuiteDetails" placeholder="Search Suite Name..." onkeyup="applyFilters()">
-        <button onclick="clearFilters()">Clear Filters</button>
+      <!-- View Mode Toggle -->
+      <div class="view-mode-toggle">
+        <label class="toggle-option">
+          <input type="radio" name="viewMode" value="dropdown" checked onchange="toggleViewMode()">
+          <span class="checkmark"></span>
+          Dropdown View
+        </label>
+        <label class="toggle-option">
+          <input type="radio" name="viewMode" value="table" onchange="toggleViewMode()">
+          <span class="checkmark"></span>
+          Table View (Old view)
+        </label>
       </div>
-      <button onclick="exportTableToExcel('detailsTable', 'TestDetailsReport')" style="margin-bottom: 15px;">Export to Excel</button>
-      <table id="detailsTable">
-        <thead>
-          <tr>
-            <!-- Updated header for timestamp with (GMT) -->
-            <th>Timestamp (GMT)</th>
-            <th>Suite Name <span class="filter-icon" onclick="openFilterMenu(event, 1)">&#x1F50D;</span></th>
-            <th>Test Name <span class="filter-icon" onclick="openFilterMenu(event, 2)">&#x1F50D;</span></th>
-            <th>Status <span class="filter-icon" onclick="openFilterMenu(event, 3)">&#x1F50D;</span></th>
-            <th>Error <span class="filter-icon" onclick="openFilterMenu(event, 4)">&#x1F50D;</span></th>
-            <th>Screenshot</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          <!-- Dynamic rows will be rendered here -->
-        </tbody>
-      </table>
-      <div id="paginationControls"></div>
+
+      <!-- Dropdown View -->
+      <div id="dropdownView" class="view-container">
+        <div class="filter-group">
+          <input type="text" id="filterSuiteDropdown" placeholder="Search Suite Name..." onkeyup="filterSuiteCards()">
+          <button onclick="clearSuiteFilters()">Clear Filters</button>
+        </div>
+        <div id="suiteCardsContainer" class="suite-cards-container">
+          <!-- Suite cards will be dynamically generated here -->
+        </div>
+      </div>
+
+      <!-- Table View -->
+      <div id="tableView" class="view-container" style="display: none;">
+        <div class="filter-group">
+          <input type="text" id="filterSuiteDetails" placeholder="Search Suite Name..." onkeyup="applyFilters()">
+          <button onclick="clearFilters()">Clear Filters</button>
+        </div>
+        <button onclick="exportTableToExcel('detailsTable', 'TestDetailsReport')" style="margin-bottom: 15px;">Export to Excel</button>
+        <table id="detailsTable">
+          <thead>
+            <tr>
+              <!-- Updated header for timestamp with (GMT) -->
+              <th>Timestamp (GMT)</th>
+              <th>Suite Name <span class="filter-icon" onclick="openFilterMenu(event, 1)">&#x1F50D;</span></th>
+              <th>Test Name <span class="filter-icon" onclick="openFilterMenu(event, 2)">&#x1F50D;</span></th>
+              <th>Status <span class="filter-icon" onclick="openFilterMenu(event, 3)">&#x1F50D;</span></th>
+              <th>Error <span class="filter-icon" onclick="openFilterMenu(event, 4)">&#x1F50D;</span></th>
+              <th>Screenshot</th>
+            <th>Expected Result</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Dynamic rows will be rendered here -->
+          </tbody>
+        </table>
+        <div id="paginationControls"></div>
+      </div>
     </div>
   </div>
   
@@ -939,7 +1210,205 @@ class HTMLReportGenerator {
       if (table) {
         makeColumnsResizable(table);
       }
+      
+      // Initialize suite cards for dropdown view
+      generateSuiteCards();
     });
+    
+    // Enhanced Test Details UI Functions
+    function toggleViewMode() {
+      const selectedMode = document.querySelector('input[name="viewMode"]:checked').value;
+      const dropdownView = document.getElementById('dropdownView');
+      const tableView = document.getElementById('tableView');
+      
+      if (selectedMode === 'dropdown') {
+        dropdownView.style.display = 'block';
+        tableView.style.display = 'none';
+        generateSuiteCards();
+      } else {
+        dropdownView.style.display = 'none';
+        tableView.style.display = 'block';
+        renderTable(1);
+      }
+    }
+    
+    function generateSuiteCards() {
+      const container = document.getElementById('suiteCardsContainer');
+      const suiteData = {};
+      
+      // Group tests by suite and calculate statistics
+      window.allTestResults.forEach(test => {
+        const suiteName = test.suiteName || 'Unknown Suite';
+        if (!suiteData[suiteName]) {
+          suiteData[suiteName] = {
+            tests: [],
+            total: 0,
+            passed: 0,
+            failed: 0,
+            skipped: 0,
+            totalTime: 0
+          };
+        }
+        
+        suiteData[suiteName].tests.push(test);
+        suiteData[suiteName].total++;
+        
+        if (test.status === 'PASSED') suiteData[suiteName].passed++;
+        else if (test.status === 'FAILED') suiteData[suiteName].failed++;
+        else if (test.status === 'SKIPPED') suiteData[suiteName].skipped++;
+        
+        if (test.duration) {
+          suiteData[suiteName].totalTime += test.duration;
+        }
+      });
+      
+      
+      let cardsHTML = '';
+      
+      if (Object.keys(suiteData).length === 0) {
+        cardsHTML = '<div class="no-tests-message">No test suites found.</div>';
+      } else {
+        Object.keys(suiteData).forEach(suiteName => {
+          const suite = suiteData[suiteName];
+          const totalTimeSeconds = (suite.totalTime / 1000).toFixed(2);
+          
+          // Determine suite status emoji
+          const suiteStatusEmoji = suite.failed > 0 ? '❌' : '✅';
+          
+          cardsHTML += '<div class="suite-card" data-suite-name="' + escapeHtml(suiteName) + '">' +
+            '<div class="suite-header" onclick="toggleSuiteCard(this)">' +
+              '<div class="suite-info">' +
+                '<div class="suite-name">' + suiteStatusEmoji + ' ' + escapeHtml(suiteName) + '</div>' +
+                '<div class="suite-stats">' +
+                  '<div class="stat-item">' +
+                    '<span class="text-gray">Total Tests:</span>' +
+                    '<strong class="text-gray">' + suite.total + '</strong>' +
+                  '</div>' +
+                  '<div class="stat-item">' +
+                    '<span class="stat-emoji">✅</span>' +
+                    '<span class="text-green">Passed:</span>' +
+                    '<strong class="text-green">' + suite.passed + '</strong>' +
+                  '</div>' +
+                  '<div class="stat-item">' +
+                    '<span class="stat-emoji">❌</span>' +
+                    '<span class="text-red">Failed:</span>' +
+                    '<strong class="text-red">' + suite.failed + '</strong>' +
+                  '</div>' +
+                  '<div class="stat-item">' +
+                    '<span class="stat-emoji">⏭️</span>' +
+                    '<span class="text-blue">Skipped:</span>' +
+                    '<strong class="text-blue">' + suite.skipped + '</strong>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="expand-icon">▼</div>' +
+            '</div>' +
+            '<div class="suite-tests">' +
+              generateSuiteTestsTable(suite.tests) +
+            '</div>' +
+          '</div>';
+        });
+      }
+      
+      container.innerHTML = cardsHTML;
+    }
+    
+    function generateSuiteTestsTable(tests) {
+      if (tests.length === 0) {
+        return '<div class="no-tests-message">No tests in this suite.</div>';
+      }
+      
+      let tableHTML = '<table>' +
+        '<thead>' +
+          '<tr>' +
+            '<th>Timestamp (GMT)</th>' +
+            '<th>Test Name</th>' +
+            '<th>Status</th>' +
+            '<th>Error</th>' +
+            '<th>Screenshot</th>' +
+            '<th>Expected Result</th>' +
+          '</tr>' +
+        '</thead>' +
+        '<tbody>';
+      
+      tests.forEach(test => {
+        const timestamp = test.startTime ? new Date(test.startTime).toUTCString() : (test.timestamp || 'N/A');
+        const status = test.status || 'UNKNOWN';
+        const statusClass = status.toLowerCase();
+        
+        // Handle error column - show NA if no errors
+        let errorHTML = 'NA';
+        if (test.errors && test.errors.length > 0) {
+          errorHTML = test.errors.map((error, idx) => {
+            return '<div class="error-block">' +
+              '<div class="error-message" onclick="toggleStack(this)">Error ' + (idx + 1) + ': ' + escapeHtml(error.message) + '</div>' +
+              '<div class="stack-trace" style="display: none;">' + escapeHtml(error.stack || 'No stack trace') + '</div>' +
+            '</div>';
+          }).join('');
+        }
+        
+        let screenshotHTML = 'No Screenshot';
+        const dataUrl = embedScreenshot(test.screenshot);
+        if (dataUrl) {
+          screenshotHTML = '<img src="' + dataUrl + '" class="thumbnail" alt="Screenshot for ' + escapeHtml(test.testName) + '" onclick="openModal(this.src)">';
+        }
+        
+        // Determine suite status emoji based on suite stats
+        const currentSuiteName = test.suiteName || '';
+        const currentSuiteStats = window.suiteStats[currentSuiteName];
+        const suiteStatusEmoji = (currentSuiteStats && currentSuiteStats.failed > 0) ? '❌' : '✅';
+        
+        tableHTML += '<tr>' +
+          '<td>' + timestamp + '</td>' +
+          '<td>' + escapeHtml(test.testName || '') + '</td>' +
+          '<td class="' + statusClass + '">' + (test.status || '') + '</td>' +
+          '<td class="error-cell">' + errorHTML + '</td>' +
+          '<td>' + screenshotHTML + '</td>' +
+          '<td>' + escapeHtml(test.expectedResult || 'Ctrl+C, expected result in JIRA story and Ctrl+V, in expected results.json') + '</td>' +
+        '</tr>';
+      });
+      
+      tableHTML += '</tbody></table>';
+      return tableHTML;
+    }
+    
+    function toggleSuiteCard(headerElement) {
+      const card = headerElement.parentElement;
+      const allCards = document.querySelectorAll('.suite-card');
+      
+      // Collapse all other cards first
+      allCards.forEach(otherCard => {
+        if (otherCard !== card && otherCard.classList.contains('expanded')) {
+          otherCard.classList.remove('expanded');
+        }
+      });
+      
+      // Toggle current card
+      card.classList.toggle('expanded');
+    }
+    
+    function filterSuiteCards() {
+      const filterText = document.getElementById('filterSuiteDropdown').value.toLowerCase();
+      const cards = document.querySelectorAll('.suite-card');
+      
+      cards.forEach(card => {
+        const suiteName = card.getAttribute('data-suite-name').toLowerCase();
+        if (suiteName.includes(filterText)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function clearSuiteFilters() {
+      document.getElementById('filterSuiteDropdown').value = '';
+      const cards = document.querySelectorAll('.suite-card');
+      cards.forEach(card => {
+        card.style.display = 'block';
+        card.classList.remove('expanded');
+      });
+    }
     
     function toggleSuiteDetails(element) {
       var details = element.nextElementSibling;
@@ -977,22 +1446,36 @@ class HTMLReportGenerator {
         let screenshotHTML = 'No Screenshot';
         const dataUrl = embedScreenshot(test.screenshot);
         if (dataUrl) {
-          screenshotHTML = \`<img src="\${dataUrl}" class="thumbnail" alt="Screenshot for \${escapeHtml(test.testName)}" onclick="openModal(this.src)">\`;
+          screenshotHTML = '<img src="' + dataUrl + '" class="thumbnail" alt="Screenshot for ' + escapeHtml(test.testName) + '" onclick="openModal(this.src)">';
         }
-        html += \`<tr data-suite="\${escapeHtml(test.suiteName || '')}" data-test-name="\${escapeHtml(test.testName || '')}" data-status="\${test.status || ''}" data-error="\${escapeHtml(test.errors ? test.errors.map(e => e.message).join(' | ') : '')}">
-          <td>\${test.timestamp || ''}</td>
-          <td class="suite-cell">\${escapeHtml(test.suiteName || '')}</td>
-          <td>\${escapeHtml(test.testName || '')}</td>
-          <td class="\${test.status === 'PASSED' ? 'passed' : test.status === 'FAILED' ? 'failed' : ''}">\${test.status || ''}</td>
-          <td class="error-cell">
-            \${test.errors ? test.errors.map((error, idx) => \`
-              <div class="error-block">
-                <div class="error-message" onclick="toggleStack(this)">Error \${idx + 1}: \${escapeHtml(error.message)}</div>
-                <div class="stack-trace" style="display: none;">\${escapeHtml(error.stack || 'No stack trace')}</div>
-              </div>\`).join('') : ''}
-          </td>
-          <td>\${screenshotHTML}</td>
-        </tr>\`;
+        
+        const timestamp = test.startTime ? new Date(test.startTime).toUTCString() : (test.timestamp || '');
+        const statusClass = test.status === 'PASSED' ? 'passed' : test.status === 'FAILED' ? 'failed' : '';
+        
+        let errorHTML = '';
+        if (test.errors && test.errors.length > 0) {
+          errorHTML = test.errors.map((error, idx) => {
+            return '<div class="error-block">' +
+              '<div class="error-message" onclick="toggleStack(this)">Error ' + (idx + 1) + ': ' + escapeHtml(error.message) + '</div>' +
+              '<div class="stack-trace" style="display: none;">' + escapeHtml(error.stack || 'No stack trace') + '</div>' +
+            '</div>';
+          }).join('');
+        }
+        
+        // Determine suite status emoji based on suite stats
+        const currentSuiteName = test.suiteName || '';
+        const currentSuiteStats = window.suiteStats[currentSuiteName];
+        const suiteStatusEmoji = (currentSuiteStats && currentSuiteStats.failed > 0) ? '❌' : '✅';
+        
+        html += '<tr data-suite="' + escapeHtml(test.suiteName || '') + '" data-test-name="' + escapeHtml(test.testName || '') + '" data-status="' + (test.status || '') + '" data-error="' + escapeHtml(test.errors ? test.errors.map(e => e.message).join(' | ') : '') + '">' +
+          '<td>' + timestamp + '</td>' +
+          '<td class="suite-cell">' + suiteStatusEmoji + ' ' + escapeHtml(test.suiteName || '') + '</td>' +
+          '<td>' + escapeHtml(test.testName || '') + '</td>' +
+          '<td class="' + statusClass + '">' + (test.status || '') + '</td>' +
+          '<td class="error-cell">' + errorHTML + '</td>' +
+          '<td>' + screenshotHTML + '</td>' +
+          '<td>' + escapeHtml(test.expectedResult || 'Ctrl+C, expected result in JIRA story and Ctrl+V, in expected results.json') + '</td>' +
+        '</tr>';
       });
       tbody.innerHTML = html;
       mergeSuiteCellsAdvanced();
@@ -1004,13 +1487,13 @@ class HTMLReportGenerator {
       const container = document.getElementById('paginationControls');
       let html = '';
       if (totalPages > 1) {
-        html += \`<button onclick="changePage(1)" \${window.currentPage === 1 ? 'disabled' : ''}>First</button>\`;
-        html += \` <button onclick="changePage(\${Math.max(window.currentPage - 1, 1)})" \${window.currentPage === 1 ? 'disabled' : ''}>Previous</button> \`;
+        html += '<button onclick="changePage(1)" ' + (window.currentPage === 1 ? 'disabled' : '') + '>First</button>';
+        html += ' <button onclick="changePage(' + Math.max(window.currentPage - 1, 1) + ')" ' + (window.currentPage === 1 ? 'disabled' : '') + '>Previous</button> ';
         for (let i = 1; i <= totalPages; i++) {
-          html += \`<button class="page-number" onclick="changePage(\${i})" \${window.currentPage === i ? 'disabled' : ''}>\${i}</button>\`;
+          html += '<button class="page-number" onclick="changePage(' + i + ')" ' + (window.currentPage === i ? 'disabled' : '') + '>' + i + '</button>';
         }
-        html += \` <button onclick="changePage(\${Math.min(window.currentPage + 1, totalPages)})" \${window.currentPage === totalPages ? 'disabled' : ''}>Next</button> \`;
-        html += \` <button onclick="changePage(\${totalPages})" \${window.currentPage === totalPages ? 'disabled' : ''}>Last</button>\`;
+        html += ' <button onclick="changePage(' + Math.min(window.currentPage + 1, totalPages) + ')" ' + (window.currentPage === totalPages ? 'disabled' : '') + '>Next</button> ';
+        html += ' <button onclick="changePage(' + totalPages + ')" ' + (window.currentPage === totalPages ? 'disabled' : '') + '>Last</button>';
       }
       container.innerHTML = '<div class="pagination">' + html + '</div>';
     }
@@ -1239,7 +1722,7 @@ class HTMLReportGenerator {
         'td.failed { background-color: #f8d7da; color: #721c24; }' +
         '</style>';
       
-      let htmlTable = '<table><thead><tr><th>Timestamp (GMT)</th><th>Suite Name</th><th>Test Name</th><th>Status</th><th>Error</th></tr></thead><tbody>';
+      let htmlTable = '<table><thead><tr><th>Timestamp (GMT)</th><th>Suite Name</th><th>Test Name</th><th>Status</th><th>Error</th><th>Expected Result</th></tr></thead><tbody>';
       const results = window.filteredResults;
       for (let i = 0; i < results.length; i++) {
         const test = results[i];
@@ -1270,11 +1753,12 @@ class HTMLReportGenerator {
         htmlTable += '<td>' + (test.testName || '') + '</td>';
         htmlTable += statusCell;
         htmlTable += '<td>' + (test.errors ? test.errors.map(e => e.message).join('; ') : '') + '</td>';
+        htmlTable += '<td>' + (test.expectedResult || '') + '</td>';
         htmlTable += '</tr>';
       }
       htmlTable += '</tbody></table>';
       
-      var htmlContent = '<html><head><meta charset="UTF-8">' + style + '</head><body>' + htmlTable + '</body></html>';
+      var htmlContent = '<html><head><meta charset="UTF-8">' + style + '</head><body>' + htmlTable + '</'+'body'+'></'+'html'+'>';
       
       var downloadLink = document.createElement("a");
       document.body.appendChild(downloadLink);
