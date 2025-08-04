@@ -342,6 +342,9 @@ class HTMLReportGenerator {
       display: flex;
       justify-content: center;
       background-color: var(--nav-bg);
+      position: sticky;
+      top: 0;
+      z-index: 1001;
     }
     .nav button {
       background: none;
@@ -696,7 +699,7 @@ class HTMLReportGenerator {
     }
     .thumbnail:hover {
       opacity: 0.8;
-    }
+    } 
     /* Modal Styles */
     .modal, .chart-modal {
       display: none;
@@ -704,10 +707,13 @@ class HTMLReportGenerator {
       z-index: 1000;
       left: 0;
       top: 0;
-      width: 100%;
+      width: 100%;  
       height: 100%;
       overflow: auto;
       background-color: rgba(0,0,0,0.8);
+    } 
+    .modal {
+      z-index: 1002 ;
     }
     .modal-content {
       margin: auto;

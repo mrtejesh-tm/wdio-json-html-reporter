@@ -55,13 +55,13 @@ class JSONReporter extends WDIOReporter {
       if (fs.existsSync(expectedResultsPath)) {
         const data = fs.readFileSync(expectedResultsPath, 'utf8');
         const expectedResults = JSON.parse(data);
-        
+
         // Validate that it's an array
         if (!Array.isArray(expectedResults)) {
           console.warn('Expected results file should contain an array. Using empty array.');
           return [];
         }
-        
+
         console.log(`Loaded ${expectedResults.length} expected results from ${expectedResultsPath}`);
         return expectedResults;
       } else {
@@ -84,20 +84,20 @@ class JSONReporter extends WDIOReporter {
     }
 
     // First try exact match
-    let match = this.expectedResults.find(item => 
+    let match = this.expectedResults.find(item =>
       item.testName && item.testName.toLowerCase() === testName.toLowerCase()
     );
 
     // If no exact match, try partial match (test name contains the expected result testName)
     if (!match) {
-      match = this.expectedResults.find(item => 
+      match = this.expectedResults.find(item =>
         item.testName && testName.toLowerCase().includes(item.testName.toLowerCase())
       );
     }
 
     // If still no match, try reverse partial match (expected result testName contains the test name)
     if (!match) {
-      match = this.expectedResults.find(item => 
+      match = this.expectedResults.find(item =>
         item.testName && item.testName.toLowerCase().includes(testName.toLowerCase())
       );
     }
@@ -131,6 +131,10 @@ class JSONReporter extends WDIOReporter {
 
   async onTestFail(test) {
     await this.addTestResult(test, 'FAILED');
+  }
+
+  async onTestSkip(test) {
+    await this.addTestResult(test, 'SKIPPED');
   }
 
   /**
@@ -297,7 +301,7 @@ class JSONReporter extends WDIOReporter {
     if (!Array.isArray(reportPaths)) {
       reportPaths = [reportPaths];
     }
-  
+
     let aggregated = {
       executionStartTime: null,
       executionEndTime: null,
@@ -306,7 +310,7 @@ class JSONReporter extends WDIOReporter {
       failed: 0,
       suites: {} // For each suite: { totalTests, passed, failed, errors: {} }
     };
-  
+
     // Process each provided report directory.
     reportPaths.forEach(reportDir => {
       if (!fs.existsSync(reportDir)) {
@@ -320,7 +324,7 @@ class JSONReporter extends WDIOReporter {
         try {
           const data = fs.readFileSync(filePath, 'utf8');
           const jsonData = JSON.parse(data);
-  
+
           // Update aggregated start time (earliest) and end time (latest).
           const fileStart = new Date(jsonData.metadata.executionStartTime);
           if (!aggregated.executionStartTime || fileStart < new Date(aggregated.executionStartTime)) {
@@ -330,14 +334,14 @@ class JSONReporter extends WDIOReporter {
           if (!aggregated.executionEndTime || fileEnd > new Date(aggregated.executionEndTime)) {
             aggregated.executionEndTime = jsonData.metadata.executionEndTime;
           }
-  
+
           // Sum tests and update counts.
           aggregated.totalTests += jsonData.testResults.length;
           const passedCount = jsonData.testResults.filter(result => result.status === 'PASSED').length;
           const failedCount = jsonData.testResults.filter(result => result.status === 'FAILED').length;
           aggregated.passed += passedCount;
           aggregated.failed += failedCount;
-  
+
           // Aggregate suite data.
           jsonData.testResults.forEach(result => {
             const suiteName = result.suiteName || 'Default Suite';
@@ -365,7 +369,7 @@ class JSONReporter extends WDIOReporter {
         }
       });
     });
-  
+
     // Read existing history data.
     let historyData = [];
     if (fs.existsSync(historyPath)) {
@@ -379,10 +383,10 @@ class JSONReporter extends WDIOReporter {
         console.error('Error reading history file:', err);
       }
     }
-  
+
     // Compute defectComparison using the last aggregated record if available.
     let previousRecord = historyData.length > 0 ? historyData[historyData.length - 1] : null;
-  
+
     // For each suite in the current aggregated data:
     for (const suiteName in aggregated.suites) {
       const currentErrors = Object.keys(aggregated.suites[suiteName].errors);
@@ -399,7 +403,7 @@ class JSONReporter extends WDIOReporter {
         resolvedDefects
       };
     }
-  
+
     // Create the aggregated history record using the full UTC timestamp.
     const aggregatedHistoryRecord = {
       timestamp: new Date().toUTCString(),
@@ -410,14 +414,14 @@ class JSONReporter extends WDIOReporter {
       failed: aggregated.failed,
       suites: aggregated.suites
     };
-  
+
     // Append the new aggregated record.
     historyData.push(aggregatedHistoryRecord);
     // Retain only the last maxHistory records.
     if (historyData.length > maxHistory) {
       historyData = historyData.slice(historyData.length - maxHistory);
     }
-  
+
     try {
       // Create directory if needed using simple string concatenation.
       const historyDir = historyPath.substring(0, historyPath.lastIndexOf('/'));
@@ -429,7 +433,7 @@ class JSONReporter extends WDIOReporter {
     } catch (err) {
       console.error('Error writing history file:', err);
     }
-  
+
     return aggregatedHistoryRecord;
   }
 }

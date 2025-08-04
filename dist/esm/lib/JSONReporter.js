@@ -120,6 +120,9 @@ class JSONReporter extends WDIOReporter {
   async onTestFail(test) {
     await this.addTestResult(test, 'FAILED');
   }
+  async onTestSkip(test) {
+    await this.addTestResult(test, 'SKIPPED');
+  }
 
   /**
    * Captures test result details along with optional screenshot,
