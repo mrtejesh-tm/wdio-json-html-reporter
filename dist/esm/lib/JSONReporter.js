@@ -11,7 +11,6 @@ import WDIOReporter from '@wdio/reporter';
  * - screenshotOption: "No" (default), "OnFailure", or "Full"
  * - history: number of history records to retain (default 5)
  * - historyPath: path where the individual/aggregated history report should be generated (if provided)
- * - expectedResultsPath: path to the expectedResult.json file (default: "./tests/test-data/expectedResult.json")
  */
 class JSONReporter extends WDIOReporter {
   constructor(options) {
@@ -20,14 +19,12 @@ class JSONReporter extends WDIOReporter {
       stdout: true,
       screenshotOption: 'No',
       history: 5,
-      historyPath: null,
-      expectedResultsPath: './test/test-data/expectedResult.json'
+      historyPath: null
     }, options);
     super(options);
     this.options = options;
     this.testResults = [];
     this.testResultUids = new Set();
-    this.expectedResults = this.loadExpectedResults();
 
     // Use a global executionId so that all reporter instances (across spec files) share the same one.
     if (!JSONReporter.globalExecutionId) {
@@ -43,57 +40,6 @@ class JSONReporter extends WDIOReporter {
 
     // Buffer to capture spec file console logs for each test.
     this.currentTestSpecLogs = [];
-  }
-
-  /**
-   * Load expected results from the JSON file
-   */
-  loadExpectedResults() {
-    try {
-      const expectedResultsPath = path.resolve(this.options.expectedResultsPath);
-      if (fs.existsSync(expectedResultsPath)) {
-        const data = fs.readFileSync(expectedResultsPath, 'utf8');
-        const expectedResults = JSON.parse(data);
-
-        // Validate that it's an array
-        if (!Array.isArray(expectedResults)) {
-          console.warn('Expected results file should contain an array. Using empty array.');
-          return [];
-        }
-        console.log(`Loaded ${expectedResults.length} expected results from ${expectedResultsPath}`);
-        return expectedResults;
-      } else {
-        console.warn(`Expected results file not found at ${expectedResultsPath}. Expected results will be empty.`);
-        return [];
-      }
-    } catch (err) {
-      console.error('Error loading expected results file:', err);
-      return [];
-    }
-  }
-
-  /**
-   * Find expected result for a given test name
-   * Uses partial matching - if the test name contains the expectedResult testName, it's considered a match
-   */
-  findExpectedResult(testName) {
-    if (!testName || !Array.isArray(this.expectedResults)) {
-      return '';
-    }
-
-    // First try exact match
-    let match = this.expectedResults.find(item => item.testName && item.testName.toLowerCase() === testName.toLowerCase());
-
-    // If no exact match, try partial match (test name contains the expected result testName)
-    if (!match) {
-      match = this.expectedResults.find(item => item.testName && testName.toLowerCase().includes(item.testName.toLowerCase()));
-    }
-
-    // If still no match, try reverse partial match (expected result testName contains the test name)
-    if (!match) {
-      match = this.expectedResults.find(item => item.testName && item.testName.toLowerCase().includes(testName.toLowerCase()));
-    }
-    return match ? match.expectedResult || '' : '';
   }
 
   /**
@@ -126,7 +72,7 @@ class JSONReporter extends WDIOReporter {
 
   /**
    * Captures test result details along with optional screenshot,
-   * browser logs, spec console logs, and expected results.
+   * browser logs, spec console logs.
    */
   async addTestResult(test, status) {
     const date = new Date();
@@ -140,9 +86,6 @@ class JSONReporter extends WDIOReporter {
       message: this.sanitizeErrorMessage(error.message, true),
       stack: this.sanitizeErrorMessage(error.stack, true)
     })) : [];
-
-    // Find expected result for this test
-    const expectedResult = this.findExpectedResult(test.title);
     let screenshotPath = '';
 
     // Capture screenshot if enabled.
@@ -189,8 +132,6 @@ class JSONReporter extends WDIOReporter {
         testName: test.title,
         status,
         errors,
-        expectedResult,
-        // New field added here
         screenshot: screenshotPath,
         browserConsoleLogs,
         specConsoleLogs
